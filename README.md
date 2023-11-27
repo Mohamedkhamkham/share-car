@@ -1,8 +1,35 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h1>Principal Routes</h1>
+
+| Route             | Description                          | Protected |
+|-------------------|--------------------------------------|-----------|
+| `/`               | Página principal de la aplicación    |           |
+| `/mis-viajes`     | Lista de mis viajes registrados      | ✅        |
+| `/registrarse`    | Página de Registro                   |           |
+| `/iniciar-sesion` | Página de Inicio de sesión           |           |
+| `/perfil`         | Página de Perfil de Usuario          | ✅        |
+| `/perfil/editar`  | Editar Perfil de Usuario             | ✅        |
+| `*`               | Error 404                            |           |
+
+
+<h1>Trip Routes</h1>
+
+| Route                     | Description                           | Protected |
+|---------------------------|---------------------------------------|-----------|
+| `/mis-viajes`             | Mis Viajes para realizar              | ✅        |
+| `/mis-viajes/crear`       | Formulario para crear un viaje         | ✅        |
+| `/mis-viajes/detalles`    | Detalles del Viaje                     | ✅        |
+
+
+
+<h1>Profile Routes</h1>
+
+| Route                    | Description                                   | Protected |
+|--------------------------|-----------------------------------------------|-----------|
+| `/perfil/detalles-perfil`| Detalles del Perfil con opción de editarlos   | ✅        |
+
+
+
+
