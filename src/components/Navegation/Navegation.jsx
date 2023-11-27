@@ -16,7 +16,6 @@ const Navigation = () => {
                         <Link to={'/misViajes'} className='nav-link'>Mis viajes</Link>
                         <Link to={'/crear'} className='nav-link'>Crear</Link>
 
-
                     </Nav>
                 </Navbar.Collapse>
             </Container>
