@@ -6,7 +6,7 @@
 | Route             | Description                          | Protected |
 |-------------------|--------------------------------------|-----------|
 | `/`               | Página principal de la aplicación    |           |
-| `/mis-viajes`     | Lista de mis viajes registrados      | ✅        |
+| `/viajes`         | Lista de mis viajes registrados      | ✅        |
 | `/registrarse`    | Página de Registro                   |           |
 | `/iniciar-sesion` | Página de Inicio de sesión           |           |
 | `/perfil`         | Página de Perfil de Usuario          | ✅        |
@@ -18,9 +18,8 @@
 
 | Route                     | Description                           | Protected |
 |---------------------------|---------------------------------------|-----------|
-| `/mis-viajes`             | Mis Viajes para realizar              | ✅        |
-| `/mis-viajes/crear`       | Formulario para crear un viaje         | ✅        |
-| `/mis-viajes/detalles`    | Detalles del Viaje                     | ✅        |
+| `/viajes/crear`           | Formulario para crear un viaje        | ✅        |
+| `/viajes/detalles/:id`    | Detalles del Viaje                    | ✅        |
 
 
 
@@ -28,7 +27,8 @@
 
 | Route                    | Description                                   | Protected |
 |--------------------------|-----------------------------------------------|-----------|
-| `/perfil/detalles-perfil`| Detalles del Perfil con opción de editarlos   | ✅        |
+| `/perfil/detalles`| Detalles del Perfil con opción de editarlos          | ✅        |
+
 
 
 
