@@ -20,5 +20,3 @@ class TripService {
 const tripServiceInstance = new TripService()
 
 export default tripServiceInstance
-
-

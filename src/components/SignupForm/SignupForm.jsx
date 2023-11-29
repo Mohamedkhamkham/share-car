@@ -59,7 +59,7 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3" controlId="carColor">
                 <Form.Label>Color del coche</Form.Label>
-                <Form.Control type="text" value={signupData.carModel} onChange={handleInputChange} name="carColor" />
+                <Form.Control type="text" value={signupData.carColor} onChange={handleInputChange} name="carColor" />
             </Form.Group>
 
             <div className="d-grid">
