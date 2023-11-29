@@ -1,14 +1,13 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import TripService from '../../services/trips.services'
 
-import TripService from '../services/tripsServices'
-
-const NewTripForm = () => {
+const NewTripForm = ({ fireFinalActions }) => {
 
     const [tripData, setTripData] = useState({
         origin: '',
         destination: '',
-        date: 0,
+        date: '',
         time: 0,
         availableSeats: 0,
         price: 0
@@ -24,7 +23,11 @@ const NewTripForm = () => {
 
         TripService
             .saveTrip(tripData)
-            .then(response => console.log('funciona'))
+            .then(() => {
+                fireFinalActions()
+
+            })
+
 
     }
 
@@ -43,15 +46,15 @@ const NewTripForm = () => {
 
                 <Row>
                     <Col>
-                        <Form.Group className="ms-5" controlId="Date">
+                        <Form.Group className="ms-5" controlId="date">
                             <Form.Label>Date</Form.Label>
-                            <Form.Control type="Date" value={tripData.date} name="Date" onChange={handleInputChange} />
+                            <Form.Control type="date" value={tripData.date} name="date" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group className="ms-5" controlId="Time">
+                        <Form.Group className="ms-5" controlId="time">
                             <Form.Label>Time</Form.Label>
-                            <Form.Control type="number" value={tripData.time} name="Time" onChange={handleInputChange} />
+                            <Form.Control type="number" value={tripData.time} name="time" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>

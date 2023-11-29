@@ -1,14 +1,20 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import NewTripForm from '../components/NewTripForm/NewTripFrom'
+import { Container } from 'react-bootstrap'
+import NewTripForm from '../components/NewTripForm/NewTripForm'
+import { useNavigate } from 'react-router-dom'
 
 const NewTripPage = () => {
+
+    const redirectToMisViajes = () => {
+        navigate('/misViajes')
+    }
+
     return (
         <div className="NewTripPage">
             <Container>
                 <h1>Nuevo viaje </h1>
                 <hr></hr>
-                <NewTripForm />
+                <NewTripForm fireFinalActions={redirectToMisViajes} />
             </Container>
         </div>
     );
