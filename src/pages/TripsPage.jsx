@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Container, Modal, Button } from 'react-bootstrap'
 import TripService from '../services/trips.services'
 import NewTripForm from '../components/NewTripForm/NewTripForm'
+import TripsList from '../components/NewTripForm/TripsList'
 
 const TripsPage = () => {
 
@@ -31,11 +32,9 @@ const TripsPage = () => {
             <Container>
 
                 <h1>Mis viajes</h1>
+                <TripsList trips={trips} />
                 <Button variant='primary' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
                 <hr />
-                {/* {
-                    trips.map(elm => <p>{elm._id}</p>)
-                } */}
             </Container>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>

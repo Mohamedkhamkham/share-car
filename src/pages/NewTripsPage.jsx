@@ -4,6 +4,7 @@ import NewTripForm from '../components/NewTripForm/NewTripForm'
 import { useNavigate } from 'react-router-dom'
 
 const NewTripPage = () => {
+    const navigate = useNavigate()
 
     const redirectToMisViajes = () => {
         navigate('/misViajes')

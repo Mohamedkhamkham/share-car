@@ -13,7 +13,7 @@ const Navigation = () => {
                         <Link to={'/misViajes'} className='nav-link'>Mis viajes</Link>
                         <Link to={'/crear'} className='nav-link'>Crear</Link>
                         <Link to={'/registro'} className='nav-link'>Registro</Link>
-                        <Link to={'/inicio-sesion'} className='nav-link'>Inicio de sesión</Link>
+                        <Link to={'/inicio-sesion'} className='nav-link'>Iniciar sesión</Link>
                         {/* <Link to={'/crear'} className='nav-link'>Cerrar sesión</Link> */}
                     </Nav>
                 </Navbar.Collapse>

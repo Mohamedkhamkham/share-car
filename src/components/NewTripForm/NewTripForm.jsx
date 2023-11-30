@@ -30,7 +30,6 @@ const NewTripForm = ({ fireFinalActions }) => {
 
 
     }
-
     return (
         <div className="NewTripForm">
             <Form onSubmit={handleTripSubmit}>
@@ -72,7 +71,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                 </Row>
 
                 <div className="d-grid mb-2">
-
                     <Button variant="primary" type="submit">
                         Crear nuevo viaje
                     </Button>
