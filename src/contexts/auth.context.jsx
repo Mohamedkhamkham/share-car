@@ -1,43 +1,43 @@
-// import { createContext, useEffect, useState } from "react"
-// import authService from '../services/auth.services'
+import { createContext, useEffect, useState } from "react"
+import authService from '../services/auth.services'
 
-// const AuthContext = createContext()
+const AuthContext = createContext()
 
-// function AuthProviderWrapper(props) {
+function AuthProviderWrapper(props) {
 
-//     // const [loggedUser, setLoggedUser] = useState(null)
+    const [loggedUser, setLoggedUser] = useState(null)
 
-//     const authenticateUser = () => {
+    const authenticateUser = () => {
 
-//         const token = localStorage.getItem('authToken')
+        const token = localStorage.getItem('authToken')
 
-//         if (token) {
+        if (token) {
 
-//             authService
-//                 .verify(token)
-//                 .then(({ data }) => {
-//                     setLoggedUser(data.loggedUser)
+            authService
+                .verify(token)
+                .then(({ data }) => {
+                    setLoggedUser(data.loggedUser)
 
-//                 })
-//                 .catch(err => console.log(err))
-//         }
-//     }
+                })
+                .catch(err => console.log(err))
+        }
+    }
 
-//     const logout = () => {
-//         localStorage.removeItem('authToken')
-//         setLoggedUser(null)
-//     }
+    const logout = () => {
+        localStorage.removeItem('authToken')
+        setLoggedUser(null)
+    }
 
-//     useEffect(() => {
-//         authenticateUser()
-//     }, [])
+    useEffect(() => {
+        authenticateUser()
+    }, [])
 
 
-//     return (
-//         <AuthContext.Provider value={{ loggedUser, authenticateUser, logout }}>
-//             {props.children}
-//         </AuthContext.Provider>
-//     )
-// }
+    return (
+        <AuthContext.Provider value={{ loggedUser, authenticateUser, logout }}>
+            {props.children}
+        </AuthContext.Provider>
+    )
+}
 
-// export { AuthContext, AuthProviderWrapper }
+export { AuthContext, AuthProviderWrapper }

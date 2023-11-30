@@ -14,6 +14,11 @@ class TripService {
     saveTrip(tripData) {
         return this.api.post('/saveTrip', tripData);
     }
+
+
+    getTripDetails(trip_id) {
+        return this.api.get(`/${trip_id}`)
+    }
 }
 
 

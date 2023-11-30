@@ -30,6 +30,7 @@ const NewTripForm = ({ fireFinalActions }) => {
 
 
     }
+
     return (
         <div className="NewTripForm">
             <Form onSubmit={handleTripSubmit}>
@@ -81,3 +82,14 @@ const NewTripForm = ({ fireFinalActions }) => {
 };
 
 export default NewTripForm;
+
+{/* <TextField
+    id="datetime-local"
+    label="Next appointment"
+    type="datetime-local"                   //https://v4.mui.com/es/components/pickers/
+    defaultValue="2017-05-24T10:30"
+    className={classes.textField}
+    InputLabelProps={{
+        shrink: true,
+    }}
+/> */}

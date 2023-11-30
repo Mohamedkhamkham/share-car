@@ -1,21 +1,21 @@
-// import { createContext, useState } from "react"
+import { createContext, useState } from "react"
 
-// const ThemeContext = createContext()
+const ThemeContext = createContext()
 
-// function ThemeProviderWrapper(props) {
+function ThemeProviderWrapper(props) {
 
-//     const [theme, setTheme] = useState('dark')
+    const [theme, setTheme] = useState('primary')
 
-//     const swhitchTheme = () => {
-//         const newTheme = theme === 'light' ? 'dark' : 'light'
-//         setTheme(newTheme)
-//     }
+    const swhitchTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light'
+        setTheme(newTheme)
+    }
 
-//     return (
-//         <ThemeContext.Provider value={{ theme, swhitchTheme }}>
-//             {props.children}
-//         </ThemeContext.Provider>
-//     )
-// }
+    return (
+        <ThemeContext.Provider value={{ theme, swhitchTheme }}>
+            {props.children}
+        </ThemeContext.Provider>
+    )
+}
 
-// export { ThemeContext, ThemeProviderWrapper }
+export { ThemeContext, ThemeProviderWrapper }
