@@ -3,8 +3,22 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import tripsService from "../services/trips.services"
 import { useParams } from "react-router-dom"
 
-
 const DetailsTripPage = () => {
+
+    const formatDate = (date) => {
+
+
+        const fechaObjeto = new Date(date);
+
+        const anio = fechaObjeto.getFullYear();
+        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son base 0
+        const dia = String(fechaObjeto.getDate()).padStart(2, '0');
+
+        const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+        return fechaFormateada
+
+    }
 
     const { trip_id } = useParams()
 
@@ -38,7 +52,7 @@ const DetailsTripPage = () => {
                     <Col>
                         <Form.Group className="ms-5" controlId="date">
                             <Form.Label>Date</Form.Label>
-                            <Form.Control type="date" value={trip.date} name="date" />
+                            <Form.Control type="date" value={formatDate(trip.date)} name="date" />
                         </Form.Group>
                     </Col>
                     <Col>

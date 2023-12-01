@@ -2,9 +2,13 @@
 import { Card, Col } from "react-bootstrap"
 import '../NewTripForm/TripsCard.css'
 import { Link } from "react-router-dom"
+// import { useContext } from "react"
+// import { AuthContext } from "../../contexts/auth.context"
 
 
-const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats }) => {
+const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats, owner }) => {
+
+    // const { user } = useContext(AuthContext)
 
 
     const formatDate = (date) => {
@@ -12,9 +16,7 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         const year = d.getFullYear().toString();
         const month = (d.getMonth() + 101).toString().substring(1);
         const day = (d.getDate() + 100).toString().substring(1);
-        const hour = (d.getHours()).toString();
-        const mins = (d.getMinutes()).toString();
-        return hour + ":" + mins + " " + day + "-" + month + "-" + year;
+        return day + "-" + month + "-" + year;
     }
 
 
@@ -30,9 +32,11 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title>Time: {time}</Card.Title>
                         <Card.Title>Price: {price}</Card.Title>
                         <Card.Title>AvailableSeats: {availableSeats}</Card.Title>
-                        <Card.Title>AvailableSeats: {_id}</Card.Title>
                         <div className="d-grid">
-                            <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">Ver detalles</Link>
+                            <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">Editar</Link>
+                            <hr></hr>
+                            <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm">Eliminar</Link>
+                            {/* {user._id === owner && } */}
                         </div>
                     </Card.Body>
                 </Card>

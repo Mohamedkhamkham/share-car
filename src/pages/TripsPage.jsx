@@ -5,7 +5,6 @@ import NewTripForm from '../components/NewTripForm/NewTripForm'
 import TripsList from '../components/NewTripForm/TripsList'
 
 const TripsPage = () => {
-
     const [showModal, setShowModal] = useState(false)
     const [trips, setTrips] = useState([]);
 
@@ -26,11 +25,9 @@ const TripsPage = () => {
         loadTrips()
     }
 
-
     return (
         <div className="TripsPage">
             <Container>
-
                 <h1>Mis viajes</h1>
                 <TripsList trips={trips} />
                 <Button variant='primary' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
@@ -39,7 +36,7 @@ const TripsPage = () => {
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal>Nuevo viaje</Modal>
+                    <Modal.Title>Nuevo viaje</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewTripForm fireFinalActions={fireFinalActions} />
@@ -49,6 +46,5 @@ const TripsPage = () => {
         </div>
     )
 }
-
 
 export default TripsPage

@@ -25,7 +25,9 @@ const Navigation = () => {
                                     <Link to={'/'} className='nav-link'>Inicio</Link>
                                     <Link to={'/misViajes'} className='nav-link'>Mis viajes</Link>
                                     <Link to={'/crear'} className='nav-link'>Crear</Link>
-                                    <span className='nav-link' onClick={logout}>Cerrar sesión</span>
+                                    <Link to={'/perfil'} className='nav-link'>Perfil</Link>
+                                    <Link><span className='nav-link' onClick={logout}>Cerrar sesión</span></Link>
+
                                 </>
                                 :
                                 <>
@@ -40,7 +42,6 @@ const Navigation = () => {
                         {loggedUser && <Navbar.Text>¡Hola, {loggedUser.username}!</Navbar.Text>}
                         <Button variant={'light'} size='sm' onClick={swhitchTheme}>Tema {theme === 'light' ? 'oscuro' : 'claro'} </Button>
                     </Navbar.Text>
-
 
 
                 </Navbar.Collapse>

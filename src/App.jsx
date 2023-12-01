@@ -1,8 +1,7 @@
-
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Navigation from './components/Navegation/Navegation'
-import AppRoutes from './components/routes/AppRoutes'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
 
@@ -17,4 +16,5 @@ function App() {
     </div>
   )
 }
+
 export default App

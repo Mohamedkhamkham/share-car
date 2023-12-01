@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import authService from '../services/auth.services'
+import ProfilePage from "../pages/ProfilePage"
+
 
 const AuthContext = createContext()
 

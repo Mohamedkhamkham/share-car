@@ -25,10 +25,8 @@ const NewTripForm = ({ fireFinalActions }) => {
             .saveTrip(tripData)
             .then(() => {
                 fireFinalActions()
-
             })
-
-
+            .catch(err => console.log(err))
     }
 
     return (

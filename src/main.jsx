@@ -7,7 +7,6 @@ import { ThemeProviderWrapper } from './contexts/theme.context'
 import { AuthProviderWrapper } from './contexts/auth.context'
 
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProviderWrapper>
     <ThemeProviderWrapper>
