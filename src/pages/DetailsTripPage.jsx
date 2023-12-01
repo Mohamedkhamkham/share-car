@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import tripsService from "../services/trips.services"
+import TripService from "../services/trips.services"
 import { useParams } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
+
 
 const DetailsTripPage = () => {
+
+    const navigate = useNavigate()
 
     const formatDate = (date) => {
 
@@ -11,7 +15,7 @@ const DetailsTripPage = () => {
         const fechaObjeto = new Date(date);
 
         const anio = fechaObjeto.getFullYear();
-        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son base 0
+        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0');
         const dia = String(fechaObjeto.getDate()).padStart(2, '0');
 
         const fechaFormateada = `${anio}-${mes}-${dia}`;
@@ -22,14 +26,37 @@ const DetailsTripPage = () => {
 
     const { trip_id } = useParams()
 
-    const [trip, setTrip] = useState({})
+    const [trip, setTrip] = useState({
+        origin: "",
+        destination: "",
+        date: "",
+        time: 0,
+        availableSeats: 0,
+        price: 0,
+    })
+
+    const handleInputChange = e => {
+        const { value, name } = e.currentTarget
+        setTrip({ ...trip, [name]: value })
+    }
+
+    const handleTripSubmit = e => {
+        e.preventDefault()
+
+        TripService
+            .updateTrip(trip_id, trip)
+            .then(() => {
+                navigate('/misViajes')
+            })
+            .catch(err => console.log(err))
+    }
 
     useEffect(() => {
         loadTripDetails()
     }, [])
 
     const loadTripDetails = () => {
-        tripsService
+        TripService
             .getTripDetails(trip_id)
             .then(({ data }) => setTrip(data))
             .catch(err => console.log(err))
@@ -37,40 +64,40 @@ const DetailsTripPage = () => {
 
     return (
         <div className="NewTripForm">
-            <Form>
+            <Form onSubmit={handleTripSubmit}>
                 <Form.Group className="ms-5" controlId="origin">
                     <Form.Label>origin</Form.Label>
-                    <Form.Control type="text" value={trip.origin} name="origin" />
+                    <Form.Control type="text" value={trip.origin} name="origin" onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="ms-5" controlId="destination">
                     <Form.Label>destination</Form.Label>
-                    <Form.Control type="text" value={trip.destination} name="destination" />
+                    <Form.Control type="text" value={trip.destination} name="destination" onChange={handleInputChange} />
                 </Form.Group>
 
                 <Row>
                     <Col>
                         <Form.Group className="ms-5" controlId="date">
                             <Form.Label>Date</Form.Label>
-                            <Form.Control type="date" value={formatDate(trip.date)} name="date" />
+                            <Form.Control type="date" value={formatDate(trip.date)} name="date" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="time">
                             <Form.Label>Time</Form.Label>
-                            <Form.Control type="number" value={trip.time} name="time" />
+                            <Form.Control type="number" value={trip.time} name="time" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="availableSeats">
                             <Form.Label>availableSeats</Form.Label>
-                            <Form.Control type="number" value={trip.availableSeats} name="availableSeats" />
+                            <Form.Control type="number" value={trip.availableSeats} name="availableSeats" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="price">
                             <Form.Label>price</Form.Label>
-                            <Form.Control type="number" value={trip.price} name="price" />
+                            <Form.Control type="number" value={trip.price} name="price" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                 </Row>

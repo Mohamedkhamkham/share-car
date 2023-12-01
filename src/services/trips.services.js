@@ -19,17 +19,22 @@ class TripService {
 
     }
 
+    updateTrip(id, trip) {
+        return this.api.put(`/${id}`, trip)
+
+    }
+
     getTrips() {
         return this.api.get('/getAllTrips');
     }
 
-    saveTrip(tripData) {
-        return this.api.post('/saveTrip', tripData);
+    saveTrip(trip) {
+        return this.api.post('/saveTrip', trip);
     }
 
 
-    getTripDetails(trip_id) {
-        return this.api.get(`/${trip_id}`)
+    getTripDetails(id) {
+        return this.api.get(`/${id}`)
     }
 }
 

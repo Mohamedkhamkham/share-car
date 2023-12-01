@@ -10,8 +10,6 @@ import PrivateRoute from '../routes/PrivateRoute';
 const AppRoutes = () => {
     return (
         <Routes>
-
-            {/* TODO: PRIORIZAR PROTECCIÓN DE RUTAS */}
             <Route path={'/'} element={<p>INICIO</p>} />
             <Route path={'/registro'} element={<SignupPage />} />
             <Route path={'/inicio-sesion'} element={<LoginPage />} />
