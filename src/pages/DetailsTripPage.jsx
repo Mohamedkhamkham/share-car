@@ -33,6 +33,7 @@ const DetailsTripPage = () => {
         time: 0,
         availableSeats: 0,
         price: 0,
+        owner: 1
     })
 
     const handleInputChange = e => {

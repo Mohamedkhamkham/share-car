@@ -1,14 +1,14 @@
 
-import { Card, Col } from "react-bootstrap"
+import { ButtonGroup, Button, Card, Col } from "react-bootstrap"
 import '../NewTripForm/TripsCard.css'
 import { Link } from "react-router-dom"
-// import { useContext } from "react"
-// import { AuthContext } from "../../contexts/auth.context"
+import { useContext } from "react"
+import { AuthContext } from "../../contexts/auth.context"
 
 
 const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats, owner }) => {
 
-    // const { user } = useContext(AuthContext)
+    const { loggedUser } = useContext(AuthContext)
 
 
     const formatDate = (date) => {
@@ -29,14 +29,21 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title>Origin: {origin}</Card.Title>
                         <Card.Title>Destination: {destination}</Card.Title>
                         <Card.Title>Date: {formatDate(date)}</Card.Title>
-                        <Card.Title>Time: {time}</Card.Title>
+                        {/* <Card.Title>Time: {time}</Card.Title>
                         <Card.Title>Price: {price}</Card.Title>
-                        <Card.Title>AvailableSeats: {availableSeats}</Card.Title>
+                        <Card.Title>AvailableSeats: {availableSeats}</Card.Title> */}
                         <div className="d-grid">
-                            <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">Editar</Link>
                             <hr></hr>
-                            <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm">Eliminar</Link>
-                            {/* {user._id === owner && } */}
+
+                            <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">
+                                <ButtonGroup style={{ width: '100%' }}>
+                                    <Button variant='dark' size='sm'>
+                                        Ver Detalles
+                                    </Button>
+                                    {loggedUser._id === owner &&
+                                        <Button className="btn btn-dark btn-sm">Editar</Button>}
+                                </ButtonGroup>
+                            </Link>
                         </div>
                     </Card.Body>
                 </Card>
