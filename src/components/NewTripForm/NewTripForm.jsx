@@ -8,9 +8,10 @@ const NewTripForm = ({ fireFinalActions }) => {
         origin: '',
         destination: '',
         date: '',
-        time: 0,
+        time: "",
         availableSeats: 0,
-        price: 0
+        price: 0,
+        image: ''
     })
 
     const handleInputChange = e => {
@@ -33,40 +34,49 @@ const NewTripForm = ({ fireFinalActions }) => {
         <div className="NewTripForm">
             <Form onSubmit={handleTripSubmit}>
                 <Form.Group className="ms-5" controlId="origin">
-                    <Form.Label>origin</Form.Label>
+                    <Form.Label>Origen: </Form.Label>
                     <Form.Control type="text" value={tripData.origin} name="origin" onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="ms-5" controlId="destination">
-                    <Form.Label>destination</Form.Label>
+                    <Form.Label>Destino: </Form.Label>
                     <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
                 </Form.Group>
 
                 <Row>
                     <Col>
                         <Form.Group className="ms-5" controlId="date">
-                            <Form.Label>Date</Form.Label>
+                            <Form.Label>Fecha: </Form.Label>
                             <Form.Control type="date" value={tripData.date} name="date" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="time">
-                            <Form.Label>Time</Form.Label>
-                            <Form.Control type="number" value={tripData.time} name="time" onChange={handleInputChange} />
+                            <Form.Label>Hora: </Form.Label>
+                            <Form.Control type="time" value={tripData.time} name="time" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="availableSeats">
-                            <Form.Label>availableSeats</Form.Label>
+                            <Form.Label>Asientos Disponinles</Form.Label>
                             <Form.Control type="number" value={tripData.availableSeats} name="availableSeats" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="ms-5" controlId="price">
-                            <Form.Label>price</Form.Label>
+                            <Form.Label>Precio</Form.Label>
                             <Form.Control type="number" value={tripData.price} name="price" onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Form.Group className="ms-5" controlId="image">
+                            <Form.Label>Url de la Imagen: </Form.Label>
+                            <Form.Control type="text" value={tripData.image} name="image" onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+
                 </Row>
 
                 <div className="d-grid mb-2">

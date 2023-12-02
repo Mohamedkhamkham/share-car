@@ -36,6 +36,10 @@ class TripService {
     getTripDetails(id) {
         return this.api.get(`/${id}`)
     }
+
+    deleteTrip(id){
+        return this.api.delete(`/${id}`)
+}
 }
 
 

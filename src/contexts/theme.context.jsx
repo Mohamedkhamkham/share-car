@@ -4,7 +4,7 @@ const ThemeContext = createContext()
 
 function ThemeProviderWrapper(props) {
 
-    const [theme, setTheme] = useState('primary')
+    const [theme, setTheme] = useState('light')
 
     const swhitchTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light'
