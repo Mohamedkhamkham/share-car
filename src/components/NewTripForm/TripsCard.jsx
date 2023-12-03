@@ -1,4 +1,3 @@
-
 import { ButtonGroup, Button, Card, Col } from "react-bootstrap"
 import '../NewTripForm/TripsCard.css'
 import { Link, useParams } from "react-router-dom"
@@ -20,30 +19,19 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         user_id: loggedUser._id,
         trip_id: _id
     }
-    const [like, setLike] = useState([])
-    const [trips, setTrips] = useState([])
 
-    const agregarFavSubmit = e => {
+    const [idsFavoritos, setIdsFavoritos] = useState([])
+
+    const favorite = e => {
         e.preventDefault()
-        setLike(_id);
         FavoritosService
             .favoritoTrip(body)
-            .then(() => {
-                console.log(false)
+            .then(({ data }) => {
+                setIdsFavoritos(data.trips.map(el => el._id));
             })
             .catch(err => console.log(err))
     }
 
-    const cancelarFavSubmit = e => {
-        e.preventDefault()
-        setLike([]);
-        FavoritosService
-            .favoritoTrip(body)
-            .then(() => {
-                console.log(false)
-            })
-            .catch(err => console.log(err))
-    }
 
     const formatDate = (date) => {
         const d = new Date(date);
@@ -61,9 +49,8 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         FavoritosService
             .getFavoritos(id)
             .then(({ data }) => {
-                const newIdsFavoritos = data.trips;
-                console.log("Fav from API:", newIdsFavoritos); // Log to check the data
-                setTrips(newIdsFavoritos);
+                // const newIdsFavoritos = data.trips.map(el => el._id);
+                setIdsFavoritos(data.trips.map(el => el._id));
             })
             .catch(err => console.log(err))
     }
@@ -79,8 +66,8 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title className="mb-2">Destino: {destination}</Card.Title>
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
                         {/* <Link to="/" className="nav-link"> */}
-                        <div className="LikeButton" onClick={like ? agregarFavSubmit : cancelarFavSubmit}>
-                            <img src={trips.includes(_id) ? heartOn : heartOff} alt="" />
+                        <div className="LikeButton" onClick={favorite}>
+                            <img src={idsFavoritos.includes(_id) ? heartOn : heartOff} alt="" />
                         </div>
                         {/* </Link> */}
                         <hr />
