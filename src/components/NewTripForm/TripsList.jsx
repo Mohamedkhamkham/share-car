@@ -4,7 +4,6 @@ import { Row } from 'react-bootstrap'
 const TripsList = ({ trips }) => {
 
 
-
     return (
         !trips ?
             <h1>cargando</h1>

@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import { Form, ButtonGroup, Button, Card, Col, Row, Container } from "react-bootstrap"
-import TripService from "../services/trips.services"
-import ReservaService from "../services/reserva.services"
+import TripService from "../../services/trips.services"
+import ReservaService from "../../services/reserva.services"
 import { useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { useContext } from "react"
-import { AuthContext } from "../contexts/auth.context"
-import reservaServiceInstance from "../services/reserva.services"
+import { AuthContext } from "../../contexts/auth.context"
 
-const DetailsTripPage = () => {
+const Detalles = () => {
     // console.log(owner)
     const navigate = useNavigate()
 
@@ -31,17 +30,10 @@ const DetailsTripPage = () => {
 
     const { trip_id } = useParams()
 
-    const body = {
-        user_id: loggedUser._id,
-        trip_id: trip_id
-    }
-
-    const [reserva, setReserva] = useState({
-        _id: "",
+    const [reservaTrip, setReservaTrip] = useState({
         user_id: "",
-        trips: []
+        trip_id: ""
     })
-
 
     const [trip, setTrip] = useState({
         origin: "",
@@ -57,6 +49,11 @@ const DetailsTripPage = () => {
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
         setTrip({ ...trip, [name]: value })
+    }
+
+    const reserva = {
+        user_id: loggedUser._id,
+        trip_id: trip_id
     }
 
     const handleTripSubmit = e => {
@@ -84,9 +81,9 @@ const DetailsTripPage = () => {
     const agregarTripSubmit = e => {
         e.preventDefault()
         ReservaService
-            .reservaTrip(body)
+            .reservaTrip(reserva)
             .then(() => {
-                navigate(`/detalles/${trip_id}`)
+                navigate('/misViajes')
             })
             .catch(err => console.log(err))
     }
@@ -95,34 +92,28 @@ const DetailsTripPage = () => {
         e.preventDefault()
 
         ReservaService
-            .reservaTrip(body)
+            .cancelarTrip(reserva)
             .then(() => {
-                navigate(`/detalles/${trip_id}`)
+                navigate('/misViajes')
             })
             .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
-        loadTripDetails(loggedUser._id)
+        loadTripDetails()
     }, [])
 
-    const loadTripDetails = (id) => {
-
+    const loadTripDetails = () => {
         TripService
             .getTripDetails(trip_id)
             .then(({ data }) => setTrip(data))
             .catch(err => console.log(err))
 
         ReservaService
-            .getReserva(id)
-            .then(({ data }) => {
-                setReserva(data)
-                console.log("---------------------  " + data._id)
-            })
+            .getReserva(loggedUser._id)
+            .then(({ data }) => setReservaTrip(data))
             .catch(err => console.log(err))
-
-
-
     }
 
     return (
@@ -187,21 +178,15 @@ const DetailsTripPage = () => {
                     {/* Botones */}
                     <Row>
                         {loggedUser._id === trip.owner &&
-                            <ButtonGroup className="d-flex justify-content-center m-1">
+                            <ButtonGroup className="d-flex justify-content-center">
                                 <Button variant="warning" size="lg" onClick={handleTripSubmit}>Editar</Button>
                                 <Button variant="danger" size="lg" className="ms-2" onClick={deleteTripSubmit}>Eliminar</Button>
                             </ButtonGroup>
                         }
 
-                        {loggedUser._id != trip.owner &&
-                            <ButtonGroup className="d-flex justify-content-center m-1">
-                                {/* {console.log(reserva)} */}
-
-                                {/* {reserva[0].trips.includes(trip_id) ? <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> : <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>} */}
-                                {/* <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>
-                                <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> */}
-                            </ButtonGroup>
-                        }
+                        {loggedUser._id === reserva.user_id &&
+                            < Button variant="success" size="lg" className="ms-2" onClick={agregarTripSubmit}>Reservar</Button>}
+                        <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button>
 
 
                     </Row>
@@ -209,7 +194,8 @@ const DetailsTripPage = () => {
             </div>
         </Container>
 
+
     )
 }
 
-export default DetailsTripPage
+export default Detalles

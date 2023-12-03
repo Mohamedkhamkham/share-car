@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Container, Modal, Button } from 'react-bootstrap'
 import TripService from '../services/trips.services'
 import NewTripForm from '../components/NewTripForm/NewTripForm'
 import TripsList from '../components/NewTripForm/TripsList'
+import { AuthContext } from '../contexts/auth.context'
 
 const TripsPage = () => {
     const [showModal, setShowModal] = useState(false)
     const [trips, setTrips] = useState([]);
+    const loggedUser = useContext(AuthContext)
 
     useEffect(() => {
         loadTrips()
     }, []);
 
     const loadTrips = () => {
-
         TripService
-            .getTrips()
+            .getTrips(loggedUser._id)
             .then(({ data }) => setTrips(data))
             .catch(err => console.log(err));
     }
@@ -28,9 +29,9 @@ const TripsPage = () => {
     return (
         <div className="TripsPage">
             <Container>
-                <h1>Mis viajes</h1>
+                <h1>VIAJES</h1>
                 <TripsList trips={trips} />
-                <Button variant='primary' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
+                <Button variant='dark' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
                 <hr />
             </Container>
 

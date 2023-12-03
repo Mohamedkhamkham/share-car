@@ -1,8 +1,15 @@
 .luna{
-    height: 25px;
-    width: 25px;
-    margin: 10px;
+    height: 2vh;
+    width: 2vh;
+    margin: 1vh;
 }
+
+.sol{
+    height: 4vh;
+    width: 4vh;
+    margin: 1vh;
+}
+
 
 .black{
     color: black;
@@ -10,4 +17,15 @@
 
 .light{
     color: white;
+}
+
+.logo{
+    height: 10vh;
+    width: 10vh;
+}
+
+.perfil{
+    margin:1vh;
+    height: 5vh;
+    width: 5vh;
 }

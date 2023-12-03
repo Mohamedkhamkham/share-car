@@ -2,3 +2,9 @@
     height: 160px;
     object-fit: cover;
 }
+
+.LikeButton {
+  width: 20px;
+  position: left;
+  display: block;
+}

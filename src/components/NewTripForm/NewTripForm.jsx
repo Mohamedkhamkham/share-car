@@ -1,4 +1,4 @@
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import TripService from '../../services/trips.services'
 
@@ -31,61 +31,63 @@ const NewTripForm = ({ fireFinalActions }) => {
     }
 
     return (
-        <div className="NewTripForm">
-            <Form onSubmit={handleTripSubmit}>
-                <Form.Group className="ms-5" controlId="origin">
-                    <Form.Label>Origen: </Form.Label>
-                    <Form.Control type="text" value={tripData.origin} name="origin" onChange={handleInputChange} />
-                </Form.Group>
+        <Container className="d-flex align-items-center justify-content-center ">
+            <div className="newTripPage">
+                <Form onSubmit={handleTripSubmit}>
+                    <Form.Group className="mb-3" controlId="origin">
+                        <Form.Label>Origen: </Form.Label>
+                        <Form.Control type="text" value={tripData.origin} name="origin" onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group className="ms-5" controlId="destination">
-                    <Form.Label>Destino: </Form.Label>
-                    <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="destination">
+                        <Form.Label>Destino: </Form.Label>
+                        <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Row>
-                    <Col>
-                        <Form.Group className="ms-5" controlId="date">
-                            <Form.Label>Fecha: </Form.Label>
-                            <Form.Control type="date" value={tripData.date} name="date" onChange={handleInputChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group className="ms-5" controlId="time">
-                            <Form.Label>Hora: </Form.Label>
-                            <Form.Control type="time" value={tripData.time} name="time" onChange={handleInputChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group className="ms-5" controlId="availableSeats">
-                            <Form.Label>Asientos Disponinles</Form.Label>
-                            <Form.Control type="number" value={tripData.availableSeats} name="availableSeats" onChange={handleInputChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group className="ms-5" controlId="price">
-                            <Form.Label>Precio</Form.Label>
-                            <Form.Control type="number" value={tripData.price} name="price" onChange={handleInputChange} />
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Form.Group className="ms-5" controlId="image">
-                            <Form.Label>Url de la Imagen: </Form.Label>
-                            <Form.Control type="text" value={tripData.image} name="image" onChange={handleInputChange} />
-                        </Form.Group>
-                    </Col>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="date">
+                                <Form.Label>Fecha: </Form.Label>
+                                <Form.Control type="date" value={tripData.date} name="date" onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="time">
+                                <Form.Label>Hora: </Form.Label>
+                                <Form.Control type="time" value={tripData.time} name="time" onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="availableSeats">
+                                <Form.Label>Asientos Disponinles</Form.Label>
+                                <Form.Control type="number" value={tripData.availableSeats} name="availableSeats" onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="price">
+                                <Form.Label>Precio</Form.Label>
+                                <Form.Control type="number" value={tripData.price} name="price" onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="image">
+                                <Form.Label>Url de la Imagen: </Form.Label>
+                                <Form.Control type="text" value={tripData.image} name="image" onChange={handleInputChange} />
+                            </Form.Group>
+                        </Col>
 
-                </Row>
+                    </Row>
 
-                <div className="d-grid mb-2">
-                    <Button variant="primary" type="submit">
-                        Crear nuevo viaje
-                    </Button>
-                </div>
-            </Form>
-        </div>
+                    <div className="d-grid mb-2">
+                        <Button variant="primary" type="submit">
+                            Crear nuevo viaje
+                        </Button>
+                    </div>
+                </Form>
+            </div>
+        </Container>
     );
 };
 

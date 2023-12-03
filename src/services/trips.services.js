@@ -24,8 +24,9 @@ class TripService {
 
     }
 
-    getTrips() {
-        return this.api.get('/getAllTrips');
+    getTrips(id = null) {
+        const call = id ? this.api.get(`/getAllTrips/${id}`) : this.api.get('/getAllTrips');
+        return call
     }
 
     saveTrip(trip) {
@@ -37,9 +38,21 @@ class TripService {
         return this.api.get(`/${id}`)
     }
 
-    deleteTrip(id){
+    deleteTrip(id) {
         return this.api.delete(`/${id}`)
-}
+    }
+
+    reservaTrip(trip) {
+        return this.api.post(`/reserva`, trip)
+    }
+
+    cancelarTrip(id, trip) {
+        return this.api.delete(`/${id}`, trip)
+    }
+
+    getReservas(id) {
+        return this.api.get(`/reservas/${id}`)
+    }
 }
 
 

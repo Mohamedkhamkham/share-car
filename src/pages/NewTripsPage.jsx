@@ -11,13 +11,8 @@ const NewTripPage = () => {
     }
 
     return (
-        <div className="NewTripPage">
-            <Container>
-                <h1>Nuevo viaje </h1>
-                <hr></hr>
-                <NewTripForm fireFinalActions={redirectToMisViajes} />
-            </Container>
-        </div>
+        <NewTripForm fireFinalActions={redirectToMisViajes} />
+
     );
 }
 

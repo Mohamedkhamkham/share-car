@@ -5,11 +5,21 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 
+import { useState } from 'react'
+import heartOn from './../../assets/corazon-relleno.svg'
+import heartOff from './../../assets/corazon-sin-relleno.svg'
+
+
 
 const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats, owner, image }) => {
 
     const { loggedUser } = useContext(AuthContext)
 
+    const [like, setLike] = useState(false)
+
+    const handleLike = () => {
+        setLike(!like)
+    }
 
     const formatDate = (date) => {
         const d = new Date(date);
@@ -30,20 +40,18 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title className="mb-2">Origen: {origin}</Card.Title>
                         <Card.Title className="mb-2">Destino: {destination}</Card.Title>
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
+                        {/* <Link to="/" className="nav-link"> */}
+                        <div className="LikeButton" onClick={handleLike}>
+                            <img src={like ? heartOn : heartOff} alt="" />
+                        </div>
+                        {/* </Link> */}
                         <hr />
 
                         <div className="d-grid gap-2">
                             <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">
                                 Ver Detalles
                             </Link>
-                            {loggedUser._id === owner && (
-                                <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm">
-                                    Editar
-                                </Link>
-                                // <Button variant='dark' size='sm'>
-                                // Editar
-                                // </Button>
-                            )}
+
                         </div>
                     </Card.Body>
                 </Card>
