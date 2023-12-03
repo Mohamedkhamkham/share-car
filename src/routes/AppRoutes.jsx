@@ -6,6 +6,8 @@ import LoginPage from '../pages/LoginPage'
 import DetailsTripPage from '../pages/DetailsTripPage';
 import ProfilePage from '../pages/ProfilePage';
 import PrivateRoute from '../routes/PrivateRoute';
+import ReservaPage from '../pages/ReservasPage';
+import FavoritosPage from '../pages/Favoritos';
 
 const AppRoutes = () => {
     return (
@@ -17,6 +19,8 @@ const AppRoutes = () => {
             <Route element={<PrivateRoute />}>
                 <Route path={'/perfil'} element={<ProfilePage />} />
                 <Route path={'/misViajes'} element={<TripsPage />} />
+                <Route path={'/misReservas'} element={<ReservaPage />} />
+                <Route path={'/misFavoritos'} element={<FavoritosPage />} />
                 <Route path={'/detalles/:trip_id'} element={<DetailsTripPage />} />
                 <Route path={'/crear'} element={<NewTripPage />} />
             </Route>

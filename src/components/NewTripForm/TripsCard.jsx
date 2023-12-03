@@ -1,24 +1,48 @@
 
 import { ButtonGroup, Button, Card, Col } from "react-bootstrap"
 import '../NewTripForm/TripsCard.css'
-import { Link } from "react-router-dom"
-import { useContext } from "react"
+import { Link, useParams } from "react-router-dom"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 
 import { useState } from 'react'
 import heartOn from './../../assets/corazon-relleno.svg'
 import heartOff from './../../assets/corazon-sin-relleno.svg'
+import FavoritosService from "../../services/favoritos.services"
 
 
 
 const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats, owner, image }) => {
 
     const { loggedUser } = useContext(AuthContext)
+    // const { trip_id } = useParams()
+    const body = {
+        user_id: loggedUser._id,
+        trip_id: _id
+    }
+    const [like, setLike] = useState([])
+    const [trips, setTrips] = useState([])
 
-    const [like, setLike] = useState(false)
+    const agregarFavSubmit = e => {
+        e.preventDefault()
+        setLike(_id);
+        FavoritosService
+            .favoritoTrip(body)
+            .then(() => {
+                console.log(false)
+            })
+            .catch(err => console.log(err))
+    }
 
-    const handleLike = () => {
-        setLike(!like)
+    const cancelarFavSubmit = e => {
+        e.preventDefault()
+        setLike([]);
+        FavoritosService
+            .favoritoTrip(body)
+            .then(() => {
+                console.log(false)
+            })
+            .catch(err => console.log(err))
     }
 
     const formatDate = (date) => {
@@ -29,6 +53,20 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         return day + "-" + month + "-" + year;
     }
 
+    useEffect(() => {
+        loadTrips(loggedUser._id)
+    }, [loggedUser._id]);
+
+    const loadTrips = (id) => {
+        FavoritosService
+            .getFavoritos(id)
+            .then(({ data }) => {
+                const newIdsFavoritos = data.trips;
+                console.log("Fav from API:", newIdsFavoritos); // Log to check the data
+                setTrips(newIdsFavoritos);
+            })
+            .catch(err => console.log(err))
+    }
 
 
     return (
@@ -41,8 +79,8 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title className="mb-2">Destino: {destination}</Card.Title>
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
                         {/* <Link to="/" className="nav-link"> */}
-                        <div className="LikeButton" onClick={handleLike}>
-                            <img src={like ? heartOn : heartOff} alt="" />
+                        <div className="LikeButton" onClick={like ? agregarFavSubmit : cancelarFavSubmit}>
+                            <img src={trips.includes(_id) ? heartOn : heartOff} alt="" />
                         </div>
                         {/* </Link> */}
                         <hr />

@@ -13,7 +13,7 @@ const DetailsTripPage = () => {
     const navigate = useNavigate()
 
     const { loggedUser } = useContext(AuthContext)
-
+    let idsReservados = [];
     const formatDate = (date) => {
 
 
@@ -36,11 +36,7 @@ const DetailsTripPage = () => {
         trip_id: trip_id
     }
 
-    const [reserva, setReserva] = useState({
-        _id: "",
-        user_id: "",
-        trips: []
-    })
+    const [reservas, setReserva] = useState([])
 
 
     const [trip, setTrip] = useState({
@@ -83,6 +79,7 @@ const DetailsTripPage = () => {
 
     const agregarTripSubmit = e => {
         e.preventDefault()
+        setReserva(trip_id);
         ReservaService
             .reservaTrip(body)
             .then(() => {
@@ -93,7 +90,7 @@ const DetailsTripPage = () => {
 
     const cancelarTripSubmit = e => {
         e.preventDefault()
-
+        setReserva([]);
         ReservaService
             .reservaTrip(body)
             .then(() => {
@@ -104,7 +101,7 @@ const DetailsTripPage = () => {
 
     useEffect(() => {
         loadTripDetails(loggedUser._id)
-    }, [])
+    }, [trip_id, loggedUser._id])
 
     const loadTripDetails = (id) => {
 
@@ -116,8 +113,9 @@ const DetailsTripPage = () => {
         ReservaService
             .getReserva(id)
             .then(({ data }) => {
-                setReserva(data)
-                console.log("---------------------  " + data._id)
+                const newIdsReservados = data.trips.map(el => el._id);
+                console.log("Reservas from API:", newIdsReservados); // Log to check the data
+                setReserva(newIdsReservados);
             })
             .catch(err => console.log(err))
 
@@ -197,7 +195,8 @@ const DetailsTripPage = () => {
                             <ButtonGroup className="d-flex justify-content-center m-1">
                                 {/* {console.log(reserva)} */}
 
-                                {/* {reserva[0].trips.includes(trip_id) ? <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> : <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>} */}
+                                {reservas.includes(trip_id) ? <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> : <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>}
+
                                 {/* <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>
                                 <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> */}
                             </ButtonGroup>

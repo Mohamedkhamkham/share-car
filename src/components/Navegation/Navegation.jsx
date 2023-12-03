@@ -32,10 +32,10 @@ const Navegation = () => {
                                 <Link to="/misViajes" className="nav-link">
                                     Viajes
                                 </Link>
-                                <Link to="/misViajes" className="nav-link">
+                                <Link to="/misReservas" className="nav-link">
                                     Reservas
                                 </Link>
-                                <Link to="/misViajes" className="nav-link">
+                                <Link to="/misFavoritos" className="nav-link">
                                     Guardados
                                 </Link>
 
