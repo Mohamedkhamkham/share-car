@@ -29,7 +29,7 @@ const Navegation = () => {
                     <Nav className="me-auto justify-content-center" onClick={handleNavClose}>
                         {loggedUser ? (
                             <>
-                                <Link to="/misViajes" className="nav-link">
+                                <Link to="/viajes" className="nav-link">
                                     Viajes
                                 </Link>
                                 <Link to="/misReservas" className="nav-link">

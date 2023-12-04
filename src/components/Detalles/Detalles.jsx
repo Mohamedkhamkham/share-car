@@ -6,27 +6,34 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { useContext } from "react"
 import { AuthContext } from "../../contexts/auth.context"
+import uploadServices from '../../services/upload.services'
+
 
 const Detalles = () => {
 
     const navigate = useNavigate()
-
     const { loggedUser } = useContext(AuthContext)
-
+    let idsReservados = [];
     const formatDate = (date) => {
-        const fechaObjeto = new Date(date);
-        const anio = fechaObjeto.getFullYear();
-        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0');
-        const dia = String(fechaObjeto.getDate()).padStart(2, '0');
-        const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+        const fechaObjeto = new Date(date)
+        const anio = fechaObjeto.getFullYear()
+        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0')
+        const dia = String(fechaObjeto.getDate()).padStart(2, '0')
+
+        const fechaFormateada = `${anio}-${mes}-${dia}`
         return fechaFormateada
+
+    }
+    const [loadingImage, setLoadingImage] = useState(true)
+    const { trip_id } = useParams()
+
+    const body = {
+        user_id: loggedUser._id,
+        trip_id: trip_id
     }
 
-    const { trip_id } = useParams()
-    const [reservaTrip, setReservaTrip] = useState({
-        user_id: "",
-        trip_id: ""
-    })
+    const [reservas, setReserva] = useState([])
 
     const [trip, setTrip] = useState({
         origin: "",
@@ -36,17 +43,13 @@ const Detalles = () => {
         availableSeats: 0,
         price: 0,
         image: "",
-        trip: 1
+        trip: 1,
+        owner: 1
     })
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
         setTrip({ ...trip, [name]: value })
-    }
-
-    const reserva = {
-        user_id: loggedUser._id,
-        trip_id: trip_id
     }
 
     const handleTripSubmit = e => {
@@ -55,7 +58,7 @@ const Detalles = () => {
         TripService
             .updateTrip(trip_id, trip)
             .then(() => {
-                navigate('/misViajes')
+                navigate('/viajes')
             })
             .catch(err => console.log(err))
     }
@@ -66,51 +69,55 @@ const Detalles = () => {
         TripService
             .deleteTrip(trip_id)
             .then(() => {
-                navigate('/misViajes')
+                navigate('/viajes')
             })
             .catch(err => console.log(err))
     }
 
     const agregarTripSubmit = e => {
         e.preventDefault()
+        setReserva(trip_id);
         ReservaService
-            .reservaTrip(reserva)
+            .reservaTrip(body)
             .then(() => {
-                navigate('/misViajes')
+                navigate(`/detalles/${trip_id}`)
             })
             .catch(err => console.log(err))
     }
 
     const cancelarTripSubmit = e => {
         e.preventDefault()
-
+        setReserva([]);
         ReservaService
-            .cancelarTrip(reserva)
+            .reservaTrip(body)
             .then(() => {
-                navigate('/misViajes')
+                navigate(`/detalles/${trip_id}`)
             })
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
-        loadTripDetails()
-    }, [])
+        loadTripDetails(loggedUser._id)
+    }, [trip_id, loggedUser._id])
 
-    const loadTripDetails = () => {
+    const loadTripDetails = (id) => {
+
         TripService
             .getTripDetails(trip_id)
             .then(({ data }) => setTrip(data))
             .catch(err => console.log(err))
 
         ReservaService
-            .getReserva(loggedUser._id)
-            .then(({ data }) => setReservaTrip(data))
+            .getReserva(id)
+            .then(({ data }) => {
+                const newIdsReservados = data.trips.map(el => el._id);
+                setReserva(newIdsReservados);
+            })
             .catch(err => console.log(err))
     }
 
     const handleFileUpload = e => {
 
-        SetLoadingImage(true)
 
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
@@ -118,12 +125,13 @@ const Detalles = () => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setTripData({ ...tripData, imageUrl: res.data.cloudinary_url })
-                SetLoadingImage(false)
+                setTrip({ ...trip, image: res.data.cloudinary_url })
+                setLoadingImage(false)
+
             })
             .catch(err => {
                 console.log(err)
-                SetLoadingImage(false)
+                setLoadingImage(true)
             })
     }
 
@@ -147,6 +155,7 @@ const Detalles = () => {
                             </Form.Group>
                         </Col>
                     </Row>
+
                     {/* Fecha, Hora, Asientos disponibles y Precio */}
                     <Row className="mb-3">
                         <Col md={3}>
@@ -175,32 +184,51 @@ const Detalles = () => {
                         </Col>
                     </Row>
 
-                    <Row className="mb-3">
-                        <Col>
-                            <Form.Group className="mb-3" controlId="image">
-                                <Form.Label>Imagen</Form.Label>
-                                <Form.Control type="file" onChange={handleFileUpload} />
-                            </Form.Group>
-                        </Col>
-                    </Row>
+                    {/* URL de la Imagen */}
+                    {
+                        loggedUser._id === trip.owner ?
+                            <Row className="mb-3">
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="image">
+                                        <Form.Label>Imagen</Form.Label>
+                                        <Form.Control type="file" onChange={handleFileUpload} />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            : ''
+                    }
+
+
                     {/* Botones */}
                     <Row>
                         {loggedUser._id === trip.owner &&
-                            <ButtonGroup className="d-flex justify-content-center">
-                                <Button variant="warning" size="lg" onClick={handleTripSubmit}>Editar</Button>
+                            <ButtonGroup className="d-flex justify-content-center m-1">
+                                <Button variant="warning" type="submit" disabled={loadingImage} >
+                                    Editar
+                                </Button>
                                 <Button variant="danger" size="lg" className="ms-2" onClick={deleteTripSubmit}>Eliminar</Button>
                             </ButtonGroup>
                         }
-                        {loggedUser._id === reserva.user_id &&
-                            < Button variant="success" size="lg" className="ms-2" onClick={agregarTripSubmit}>Reservar</Button>}
-                        <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button>
+
+                        {loggedUser._id != trip.owner &&
+                            <ButtonGroup className="d-flex justify-content-center m-1">
+                                {/* {console.log(reserva)} */}
+
+                                {reservas.includes(trip_id) ? <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> : <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>}
+
+                                {/* <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>
+                                <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> */}
+                            </ButtonGroup>
+                        }
+
+
                     </Row>
                 </Form>
             </div>
         </Container>
 
-
     )
+
 }
 
 export default Detalles

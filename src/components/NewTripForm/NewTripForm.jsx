@@ -12,11 +12,11 @@ const NewTripForm = ({ fireFinalActions }) => {
         time: "",
         availableSeats: 0,
         price: 0,
-        imageUrl: ''
+        image: ''
     })
 
-    const [loadingImage, SetLoadingImage] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [loadingImage, setLoadingImage] = useState(true)
+
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
@@ -24,7 +24,7 @@ const NewTripForm = ({ fireFinalActions }) => {
     }
 
 
-
+    const [errors, setErrors] = useState([])
     const handleTripSubmit = e => {
         e.preventDefault()
 
@@ -42,7 +42,6 @@ const NewTripForm = ({ fireFinalActions }) => {
 
     const handleFileUpload = e => {
 
-        SetLoadingImage(true)
 
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
@@ -50,15 +49,13 @@ const NewTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                console.log('tripData1: ' + tripData.imageUrl)
-                console.log('prueba' + res.data.cloudinary_url)
-                setTripData({ ...tripData, imageUrl: res.data.cloudinary_url })
-                SetLoadingImage(false)
-                console.log('tripData: ' + tripData.imageUrl)
+                setTripData({ ...tripData, image: res.data.cloudinary_url })
+                setLoadingImage(false)
+
             })
             .catch(err => {
                 console.log(err)
-                SetLoadingImage(false)
+                setLoadingImage(true)
             })
     }
 
@@ -114,10 +111,8 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Row>
 
                     <div className="d-grid mb-2">
-                        <Button variant="primary" type="submit" disabled={!loadingImage}
-                        >
+                        <Button variant="primary" type="submit" disabled={loadingImage} >
                             Crear nuevo viaje
-                            {loadingImage ? 'Cargando imagen...' : 'Crear nuevo viaje'}
                         </Button>
                     </div>
                 </Form>

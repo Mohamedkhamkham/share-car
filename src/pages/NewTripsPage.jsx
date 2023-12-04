@@ -7,7 +7,7 @@ const NewTripPage = () => {
     const navigate = useNavigate()
 
     const redirectToMisViajes = () => {
-        navigate('/misViajes')
+        navigate('/viajes')
     }
 
     return (

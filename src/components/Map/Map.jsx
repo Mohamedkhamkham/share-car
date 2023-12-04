@@ -20,7 +20,7 @@ const MapRender = () => {
 
 
     // const handleMarkerClick = (tripId) => {
-    //     navigate(`/misViajes/${tripId}`)
+    //     navigate(`/viajes/${tripId}`)
     // }
 
 

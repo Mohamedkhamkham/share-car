@@ -20,7 +20,7 @@ const AppRoutes = () => {
 
             <Route element={<PrivateRoute />}>
                 <Route path={'/perfil'} element={<ProfilePage />} />
-                <Route path={'/misViajes'} element={<TripsPage />} />
+                <Route path={'/viajes'} element={<TripsPage />} />
                 <Route path={'/misReservas'} element={<ReservaPage />} />
                 <Route path={'/misFavoritos'} element={<FavoritosPage />} />
                 <Route path={'/detalles/:trip_id'} element={<DetailsTripPage />} />
