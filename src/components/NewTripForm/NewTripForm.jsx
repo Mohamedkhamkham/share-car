@@ -12,7 +12,7 @@ const NewTripForm = ({ fireFinalActions }) => {
         time: "",
         availableSeats: 0,
         price: 0,
-        image: ''
+        imageUrl: ''
     })
 
     const [loadingImage, SetLoadingImage] = useState(false)
@@ -50,8 +50,11 @@ const NewTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
+                console.log('tripData1: ' + tripData.imageUrl)
+                console.log('prueba' + res.data.cloudinary_url)
                 setTripData({ ...tripData, imageUrl: res.data.cloudinary_url })
                 SetLoadingImage(false)
+                console.log('tripData: ' + tripData.imageUrl)
             })
             .catch(err => {
                 console.log(err)
@@ -111,10 +114,10 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Row>
 
                     <div className="d-grid mb-2">
-                        <Button variant="primary" type="submit" //disabled={!loadingImage}
+                        <Button variant="primary" type="submit" disabled={!loadingImage}
                         >
                             Crear nuevo viaje
-                            {/* {loadingImage ? 'Cargando imagen...' : 'Crear nuevo viaje'} */}
+                            {loadingImage ? 'Cargando imagen...' : 'Crear nuevo viaje'}
                         </Button>
                     </div>
                 </Form>

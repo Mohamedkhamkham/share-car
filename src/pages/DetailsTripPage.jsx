@@ -108,7 +108,6 @@ const DetailsTripPage = () => {
             .getReserva(id)
             .then(({ data }) => {
                 const newIdsReservados = data.trips.map(el => el._id);
-                console.log("Reservas from API:", newIdsReservados); // Log to check the data
                 setReserva(newIdsReservados);
             })
             .catch(err => console.log(err))
@@ -142,13 +141,13 @@ const DetailsTripPage = () => {
                     <Row className>
                         <Col md={12}>
                             <Form.Group controlId="origin">
-                                <Form.Label srOnly>Origen</Form.Label>
+                                <Form.Label >Origen</Form.Label>
                                 <Form.Control type="text" placeholder="Ej. Ciudad de origen" value={trip.origin} name="origin" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
                         <Col md={12}>
                             <Form.Group controlId="destination">
-                                <Form.Label srOnly>Destino</Form.Label>
+                                <Form.Label >Destino</Form.Label>
                                 <Form.Control type="text" placeholder="Ej. Ciudad de destino" value={trip.destination} name="destination" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
@@ -158,25 +157,25 @@ const DetailsTripPage = () => {
                     <Row className="mb-3">
                         <Col md={3}>
                             <Form.Group controlId="date">
-                                <Form.Label srOnly>Fecha</Form.Label>
+                                <Form.Label >Fecha</Form.Label>
                                 <Form.Control type="date" value={formatDate(trip.date)} name="date" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
                         <Col md={3}>
                             <Form.Group controlId="time">
-                                <Form.Label srOnly>Hora</Form.Label>
+                                <Form.Label >Hora</Form.Label>
                                 <Form.Control type="time" value={trip.time} name="time" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
                         <Col md={3}>
                             <Form.Group controlId="availableSeats">
-                                <Form.Label srOnly>Asientos disponibles</Form.Label>
+                                <Form.Label >Asientos disponibles</Form.Label>
                                 <Form.Control type="number" value={trip.availableSeats} name="availableSeats" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
                         <Col md={3}>
                             <Form.Group controlId="price">
-                                <Form.Label srOnly>Precio (Eur.)</Form.Label>
+                                <Form.Label >Precio (Eur.)</Form.Label>
                                 <Form.Control type="number" value={trip.price} name="price" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>

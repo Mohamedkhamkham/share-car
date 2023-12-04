@@ -26,7 +26,7 @@ const LoginForm = () => {
             .then(({ data }) => {
                 localStorage.setItem('authToken', data.authToken)
                 authenticateUser()
-                navigate('/')
+                navigate('/map')
             })
             .catch(err => next(err))
     }
