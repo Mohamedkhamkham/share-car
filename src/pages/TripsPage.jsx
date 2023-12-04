@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Container, Modal, Button } from 'react-bootstrap'
 import TripService from '../services/trips.services'
 import NewTripForm from '../components/NewTripForm/NewTripForm'
-import TripsList from '../components/NewTripForm/TripsList'
+import TripsList from '../components/Trips/TripsList'
 import { AuthContext } from '../contexts/auth.context'
 
 const TripsPage = () => {

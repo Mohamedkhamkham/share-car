@@ -6,25 +6,20 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
 import { useContext } from "react"
 import { AuthContext } from "../contexts/auth.context"
-import reservaServiceInstance from "../services/reserva.services"
 
 const DetailsTripPage = () => {
-    // console.log(owner)
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
     const { loggedUser } = useContext(AuthContext)
     let idsReservados = [];
     const formatDate = (date) => {
 
+        const fechaObjeto = new Date(date)
+        const anio = fechaObjeto.getFullYear()
+        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0')
+        const dia = String(fechaObjeto.getDate()).padStart(2, '0')
 
-        const fechaObjeto = new Date(date);
-
-        const anio = fechaObjeto.getFullYear();
-        const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0');
-        const dia = String(fechaObjeto.getDate()).padStart(2, '0');
-
-        const fechaFormateada = `${anio}-${mes}-${dia}`;
-
+        const fechaFormateada = `${anio}-${mes}-${dia}`
         return fechaFormateada
 
     }
@@ -37,7 +32,6 @@ const DetailsTripPage = () => {
     }
 
     const [reservas, setReserva] = useState([])
-
 
     const [trip, setTrip] = useState({
         origin: "",

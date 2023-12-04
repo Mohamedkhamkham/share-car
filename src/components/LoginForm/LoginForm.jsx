@@ -4,16 +4,13 @@ import authService from "../../services/auth.services"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 
-
 const LoginForm = () => {
-
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
 
     const navigate = useNavigate()
-
     const { authenticateUser } = useContext(AuthContext)
 
     const handleInputChange = e => {
@@ -22,7 +19,6 @@ const LoginForm = () => {
     }
 
     const handleSubmit = e => {
-
         e.preventDefault()
 
         authService
@@ -32,13 +28,12 @@ const LoginForm = () => {
                 authenticateUser()
                 navigate('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => next(err))
     }
 
     return (
 
         <Form onSubmit={handleSubmit}>
-
             <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={loginData.email} onChange={handleInputChange} name="email" />
@@ -52,7 +47,6 @@ const LoginForm = () => {
             <div className="d-grid">
                 <Button variant="primary" type="submit">Acceder</Button>
             </div>
-
         </Form>
     )
 }

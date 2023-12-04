@@ -8,28 +8,21 @@ import { useContext } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 
 const Detalles = () => {
-    // console.log(owner)
+
     const navigate = useNavigate()
 
     const { loggedUser } = useContext(AuthContext)
 
     const formatDate = (date) => {
-
-
         const fechaObjeto = new Date(date);
-
         const anio = fechaObjeto.getFullYear();
         const mes = String(fechaObjeto.getMonth() + 1).padStart(2, '0');
         const dia = String(fechaObjeto.getDate()).padStart(2, '0');
-
         const fechaFormateada = `${anio}-${mes}-${dia}`;
-
         return fechaFormateada
-
     }
 
     const { trip_id } = useParams()
-
     const [reservaTrip, setReservaTrip] = useState({
         user_id: "",
         trip_id: ""
@@ -99,7 +92,6 @@ const Detalles = () => {
             .catch(err => console.log(err))
     }
 
-
     useEffect(() => {
         loadTripDetails()
     }, [])
@@ -136,7 +128,6 @@ const Detalles = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-
                     {/* Fecha, Hora, Asientos disponibles y Precio */}
                     <Row className="mb-3">
                         <Col md={3}>
@@ -164,7 +155,6 @@ const Detalles = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-
                     {/* URL de la Imagen */}
                     <Row className="mb-3">
                         <Col>
@@ -174,7 +164,6 @@ const Detalles = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-
                     {/* Botones */}
                     <Row>
                         {loggedUser._id === trip.owner &&
@@ -183,12 +172,9 @@ const Detalles = () => {
                                 <Button variant="danger" size="lg" className="ms-2" onClick={deleteTripSubmit}>Eliminar</Button>
                             </ButtonGroup>
                         }
-
                         {loggedUser._id === reserva.user_id &&
                             < Button variant="success" size="lg" className="ms-2" onClick={agregarTripSubmit}>Reservar</Button>}
                         <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button>
-
-
                     </Row>
                 </Form>
             </div>

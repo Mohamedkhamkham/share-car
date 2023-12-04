@@ -1,20 +1,16 @@
 import { ButtonGroup, Button, Card, Col } from "react-bootstrap"
-import '../NewTripForm/TripsCard.css'
-import { Link, useParams } from "react-router-dom"
+import '../Trips/TripsCard.css'
+import { Link } from "react-router-dom"
 import { useContext, useEffect } from "react"
 import { AuthContext } from "../../contexts/auth.context"
-
 import { useState } from 'react'
 import heartOn from './../../assets/corazon-relleno.svg'
 import heartOff from './../../assets/corazon-sin-relleno.svg'
 import FavoritosService from "../../services/favoritos.services"
 
-
-
-const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats, owner, image }) => {
+const TripsCard = ({ _id, origin, destination, date, image }) => {
 
     const { loggedUser } = useContext(AuthContext)
-    // const { trip_id } = useParams()
     const body = {
         user_id: loggedUser._id,
         trip_id: _id
@@ -27,11 +23,11 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         FavoritosService
             .favoritoTrip(body)
             .then(({ data }) => {
-                setIdsFavoritos(data.trips.map(el => el._id));
+                const recu = data.trips.map(el => el)
+                setIdsFavoritos(recu);
             })
             .catch(err => console.log(err))
     }
-
 
     const formatDate = (date) => {
         const d = new Date(date);
@@ -49,12 +45,10 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         FavoritosService
             .getFavoritos(id)
             .then(({ data }) => {
-                // const newIdsFavoritos = data.trips.map(el => el._id);
                 setIdsFavoritos(data.trips.map(el => el._id));
             })
             .catch(err => console.log(err))
     }
-
 
     return (
         <Col lg={{ span: 3 }} md={{ span: 6 }}>
@@ -65,18 +59,17 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
                         <Card.Title className="mb-2">Origen: {origin}</Card.Title>
                         <Card.Title className="mb-2">Destino: {destination}</Card.Title>
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
-                        {/* <Link to="/" className="nav-link"> */}
+
                         <div className="LikeButton" onClick={favorite}>
                             <img src={idsFavoritos.includes(_id) ? heartOn : heartOff} alt="" />
                         </div>
-                        {/* </Link> */}
+
                         <hr />
 
                         <div className="d-grid gap-2">
                             <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">
                                 Ver Detalles
                             </Link>
-
                         </div>
                     </Card.Body>
                 </Card>
@@ -84,6 +77,5 @@ const TripsCard = ({ _id, origin, destination, date, time, price, availableSeats
         </Col>
     )
 }
-
 
 export default TripsCard

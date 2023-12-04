@@ -1,9 +1,7 @@
-import TripsCard from '../NewTripForm/TripsCard'
+import TripsCard from './TripsCard'
 import { Row } from 'react-bootstrap'
 
 const TripsList = ({ trips }) => {
-
-
     return (
         !trips ?
             <h1>cargando</h1>
@@ -16,9 +14,7 @@ const TripsList = ({ trips }) => {
                 </Row>
             </>
     )
-
 }
-
 
 export default TripsList
 

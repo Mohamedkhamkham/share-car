@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import authService from '../services/auth.services'
-import ProfilePage from "../pages/ProfilePage"
-
+// import ProfilePage from "../pages/ProfilePage"
 
 const AuthContext = createContext()
 
@@ -18,11 +17,9 @@ function AuthProviderWrapper(props) {
             authService
                 .verify(token)
                 .then(({ data }) => {
-                    console.log(data)
                     setLoggedUser(data.loggedUser)
-
                 })
-                .catch(err => console.log(err))
+                .catch(err => next(err))
         }
     }
 
@@ -34,7 +31,6 @@ function AuthProviderWrapper(props) {
     useEffect(() => {
         authenticateUser()
     }, [])
-
 
     return (
         <AuthContext.Provider value={{ loggedUser, authenticateUser, logout }}>

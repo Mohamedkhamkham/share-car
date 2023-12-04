@@ -1,7 +1,5 @@
 import { useContext, useState, useEffect } from "react"
 import { Form, Button, Modal, Row, Col, Container, Image } from "react-bootstrap"
-import authService from "../../services/auth.services"
-
 import { Navigate, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import userService from "../../services/user.services"
@@ -57,7 +55,7 @@ const Profile = () => {
                 </div>
                 <Form onSubmit={handleFormSubmit}>
                     <Col xs={2} md={6} ms={3} bg={3} className="d-flex align-items-center mx-auto">
-                        <Image className="imgProfile d-flex align-items-center mx-auto" src={userData.imageUrl} roundedCircle />
+                        <Image className="imgProfile d-flex align-items-center mx-auto" src={(userData.imageUrl != null && userData.imageUrl !== "") ? userData.imageUrl : "../../../public/icono_sin.avif"} roundedCircle />
                     </Col>
                     <Row>
                         <Col>

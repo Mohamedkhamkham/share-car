@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Container, Modal, Button } from 'react-bootstrap'
-import TripService from '../services/trips.services'
 import NewTripForm from '../components/NewTripForm/NewTripForm'
-import TripsList from '../components/NewTripForm/TripsList'
+import TripsList from '../components/Trips/TripsList'
 import { AuthContext } from '../contexts/auth.context'
 import ReservaService from '../services/reserva.services'
 
@@ -20,7 +19,7 @@ const ReservaPage = () => {
             .getReserva(id)
             .then(({ data }) => {
                 const newIdsReservados = data.trips;
-                console.log("Reservas from API:", newIdsReservados); // Log to check the data
+                console.log("Reservas from API:", newIdsReservados)
                 setTrips(newIdsReservados);
             })
             .catch(err => console.log(err))

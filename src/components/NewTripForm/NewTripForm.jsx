@@ -1,5 +1,5 @@
-import { Form, Button, Row, Col, Container } from 'react-bootstrap';
-import { useState } from 'react';
+import { Form, Button, Row, Col, Container } from 'react-bootstrap'
+import { useState } from 'react'
 import TripService from '../../services/trips.services'
 
 const NewTripForm = ({ fireFinalActions }) => {
@@ -88,18 +88,8 @@ const NewTripForm = ({ fireFinalActions }) => {
                 </Form>
             </div>
         </Container>
-    );
-};
+    )
+}
 
 export default NewTripForm;
 
-{/* <TextField
-    id="datetime-local"
-    label="Next appointment"
-    type="datetime-local"                   //https://v4.mui.com/es/components/pickers/
-    defaultValue="2017-05-24T10:30"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-/> */}

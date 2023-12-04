@@ -19,13 +19,13 @@ const Navegation = () => {
     return (
         <Navbar bg={theme} expand="lg" className="mb-4">
             <Container>
-                <Navbar.Brand href="/">
-                    <Link to="/" className="nav-link">
-                        {theme === 'light' ? <img src={logo_negro} className='logo' /> : <img src={logo_blanco} className='logo' />}
-                    </Link>
+                <Navbar.Brand as={Link} to="/" className="nav-link">
+
+                    {theme === 'light' ? <img src={logo_negro} className='logo' /> : <img src={logo_blanco} className='logo' />}
+
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
-                <Navbar.Collapse id="basic-navbar-nav" expanded={expanded}>
+                <Navbar.Collapse id="basic-navbar-nav" expanded={expanded ? 'true' : 'false'}>
                     <Nav className="me-auto justify-content-center" onClick={handleNavClose}>
                         {loggedUser ? (
                             <>
@@ -56,10 +56,10 @@ const Navegation = () => {
                     {loggedUser &&
 
                         <Navbar.Collapse className="justify-content-end">
-                            <Navbar.Brand className='d-flex'>
-                                <Link to="/perfil" className="nav-link">
-                                    <Image className="perfil" src={loggedUser.imageUrl} roundedCircle />
-                                </Link>
+                            <Navbar.Brand className='d-flex nav-link' as={Link} to="/perfil">
+
+                                <Image className="perfil" src={(loggedUser.imageUrl != null && loggedUser.imageUrl.trim() !== "") ? loggedUser.imageUrl : "../../../public/icono_sin.png"} roundedCircle />
+
                             </Navbar.Brand>
                             <Nav>
                                 <Link className='nav-link' onClick={logout}>Cerrar sesión</Link>
