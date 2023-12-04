@@ -8,6 +8,7 @@ import ProfilePage from '../pages/ProfilePage';
 import PrivateRoute from '../routes/PrivateRoute';
 import ReservaPage from '../pages/ReservasPage';
 import FavoritosPage from '../pages/Favoritos';
+import MapPage from '../pages/MapPage';
 
 const AppRoutes = () => {
     return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
             <Route path={'/'} element={<p>INICIO</p>} />
             <Route path={'/registro'} element={<SignupPage />} />
             <Route path={'/inicio-sesion'} element={<LoginPage />} />
+            <Route path={'/map'} element={<MapPage />} />
 
             <Route element={<PrivateRoute />}>
                 <Route path={'/perfil'} element={<ProfilePage />} />

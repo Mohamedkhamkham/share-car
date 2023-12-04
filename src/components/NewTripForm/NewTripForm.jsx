@@ -1,6 +1,7 @@
 import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { useState } from 'react'
 import TripService from '../../services/trips.services'
+import uploadServices from '../../services/upload.services'
 
 const NewTripForm = ({ fireFinalActions }) => {
 
@@ -14,10 +15,15 @@ const NewTripForm = ({ fireFinalActions }) => {
         image: ''
     })
 
+    const [loadingImage, SetLoadingImage] = useState(false)
+    const [errors, setErrors] = useState([])
+
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
         setTripData({ ...tripData, [name]: value })
     }
+
+
 
     const handleTripSubmit = e => {
         e.preventDefault()
@@ -27,7 +33,30 @@ const NewTripForm = ({ fireFinalActions }) => {
             .then(() => {
                 fireFinalActions()
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setErrors(err.response.data.errorMesages)
+            })
+    }
+
+
+
+    const handleFileUpload = e => {
+
+        SetLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setTripData({ ...tripData, imageUrl: res.data.cloudinary_url })
+                SetLoadingImage(false)
+            })
+            .catch(err => {
+                console.log(err)
+                SetLoadingImage(false)
+            })
     }
 
     return (
@@ -73,16 +102,19 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Row>
                         <Col>
                             <Form.Group className="mb-3" controlId="image">
-                                <Form.Label>Url de la Imagen: </Form.Label>
-                                <Form.Control type="text" value={tripData.image} name="image" onChange={handleInputChange} />
+                                <Form.Label>Imagen</Form.Label>
+                                <Form.Control type="file" onChange={handleFileUpload} />
                             </Form.Group>
+
                         </Col>
 
                     </Row>
 
                     <div className="d-grid mb-2">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" //disabled={!loadingImage}
+                        >
                             Crear nuevo viaje
+                            {/* {loadingImage ? 'Cargando imagen...' : 'Crear nuevo viaje'} */}
                         </Button>
                     </div>
                 </Form>

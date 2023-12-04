@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import authService from '../services/auth.services'
+import UploadServices from "../services/upload.services"
 // import ProfilePage from "../pages/ProfilePage"
 
 const AuthContext = createContext()
@@ -19,7 +20,7 @@ function AuthProviderWrapper(props) {
                 .then(({ data }) => {
                     setLoggedUser(data.loggedUser)
                 })
-                .catch(err => next(err))
+                .catch(err => console.log(err))
         }
     }
 

@@ -52,7 +52,7 @@ const TripsCard = ({ _id, origin, destination, date, image }) => {
 
     return (
         <Col lg={{ span: 3 }} md={{ span: 6 }}>
-            <article clasName='TripsCard mb-3'>
+            <article className='TripsCard mb-3'>
                 <Card>
                     <Card.Img variant="top" src={image} className="img-fluid" />
                     <Card.Body>

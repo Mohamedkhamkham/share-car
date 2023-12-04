@@ -108,6 +108,25 @@ const Detalles = () => {
             .catch(err => console.log(err))
     }
 
+    const handleFileUpload = e => {
+
+        SetLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setTripData({ ...tripData, imageUrl: res.data.cloudinary_url })
+                SetLoadingImage(false)
+            })
+            .catch(err => {
+                console.log(err)
+                SetLoadingImage(false)
+            })
+    }
+
     return (
         <Container className="d-flex align-items-center justify-content-center ">
             <div className="NewTripForm">
@@ -155,12 +174,12 @@ const Detalles = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    {/* URL de la Imagen */}
+
                     <Row className="mb-3">
                         <Col>
-                            <Form.Group controlId="image">
-                                <Form.Label srOnly>URL de la Imagen</Form.Label>
-                                <Form.Control type="text" placeholder="Ej. https://ejemplo.com/imagen.jpg" value={trip.image} name="image" onChange={handleInputChange} />
+                            <Form.Group className="mb-3" controlId="image">
+                                <Form.Label>Imagen</Form.Label>
+                                <Form.Control type="file" onChange={handleFileUpload} />
                             </Form.Group>
                         </Col>
                     </Row>
