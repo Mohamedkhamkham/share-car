@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import { Form, Button, Modal, Row, Col, Container, Image } from "react-bootstrap"
+import authService from "../../services/auth.services"
+
 import { Navigate, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import userService from "../../services/user.services"
@@ -55,7 +57,7 @@ const Profile = () => {
                 </div>
                 <Form onSubmit={handleFormSubmit}>
                     <Col xs={2} md={6} ms={3} bg={3} className="d-flex align-items-center mx-auto">
-                        <Image className="imgProfile d-flex align-items-center mx-auto" src={(userData.imageUrl != null && userData.imageUrl !== "") ? userData.imageUrl : "../../../public/icono_sin.avif"} roundedCircle />
+                        <Image className="imgProfile d-flex align-items-center mx-auto" src={(userData.imageUrl != null && userData.imageUrl !== "") ? userData.imageUrl : "../../../public/icono_sin.png"} roundedCircle />
                     </Col>
                     <Row>
                         <Col>
@@ -90,7 +92,7 @@ const Profile = () => {
 
                     <Form.Group className="mb-1" controlId="imageUrl">
                         <Form.Label>Foto de perfil</Form.Label>
-                        <Form.Control type="text" value={userData.imageUrl} onChange={handleInputChange} name="imageUrl" />
+                        <Form.Control type="text" value={userData.imageUrl || ''} onChange={handleInputChange} name="imageUrl" />
                     </Form.Group>
 
                     <div className="d-grid">
