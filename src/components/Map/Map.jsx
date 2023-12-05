@@ -7,12 +7,9 @@ const MapRender = () => {
 
     //  const navigate = useNavigate()
 
-
-
     // useEffect(() => {
     //     loadTrips()
     // }, [])
-
 
     // const handleMarkerClick = (tripId) => {
     //     navigate(`/viajes/${tripId}`)

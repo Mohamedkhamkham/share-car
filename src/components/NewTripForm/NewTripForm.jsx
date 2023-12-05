@@ -3,18 +3,22 @@ import { useState } from 'react'
 import TripService from '../../services/trips.services'
 import uploadServices from '../../services/upload.services'
 import FormError from '../FormError/FormError'
+import ReactGoogleAutocomplete from "react-google-autocomplete"
+// import CityForm from '../BuscadorGoogle/CityForm'
 
 
 const NewTripForm = ({ fireFinalActions }) => {
-
+    // const api = "AIzaSyC3RuJsUQ3759MGeXPIp02-hIREZpkrLqs"
     const [tripData, setTripData] = useState({
-        origin: '',
-        destination: '',
-        date: '',
+        origin: "",
+        destination: "",
+        date: "",
         time: "",
         availableSeats: 0,
         price: 0,
-        image: ''
+        image: "",
+        trip: 1,
+        owner: 1
     })
 
     const [loadingImage, setLoadingImage] = useState(true)
@@ -35,8 +39,9 @@ const NewTripForm = ({ fireFinalActions }) => {
                 fireFinalActions()
             })
             .catch(err => {
-                setErrors(err.response.data.errorMesages)
+                setErrors(err.response.data.errorMessages)
             })
+
     }
 
     const handleFileUpload = e => {
@@ -57,6 +62,15 @@ const NewTripForm = ({ fireFinalActions }) => {
             })
     }
 
+    const [selectedPlace, setSelectedPlace] = useState({
+        formatted_address: tripData.origin,
+    });
+
+    const handlePlaceSelected = (place, fieldName) => {
+        const value = place.formatted_address;
+        setTripData((prevData) => ({ ...prevData, [fieldName]: value }));
+    };
+
     return (
         <Container className="d-flex align-items-center justify-content-center ">
             <div className="newTripPage">
@@ -66,11 +80,35 @@ const NewTripForm = ({ fireFinalActions }) => {
                         <Form.Label>Origen: </Form.Label>
                         <Form.Control type="text" value={tripData.origin} name="origin" onChange={handleInputChange} />
                     </Form.Group>
-
+                    {/* <Form.Group className="mb-3" controlId="origin">
+                        <Form.Label>Origen: </Form.Label>
+                        <ReactGoogleAutocomplete
+                            className="ReactGoogleAutocomplete-input"
+                            placeholder="Ej. Ciudad de origen"
+                            name="origin"
+                            value={tripData.origin}
+                            apiKey={api}
+                            onPlaceSelected={(place) => handlePlaceSelected(place, 'origin')}
+                            options={{ types: ['(cities)'], componentRestrictions: { country: 'es' } }}
+                        />
+                    </Form.Group> */}
                     <Form.Group className="mb-3" controlId="destination">
                         <Form.Label>Destino: </Form.Label>
                         <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
                     </Form.Group>
+
+                    {/* <Form.Group className="mb-3" controlId="destination">
+                        <Form.Label>Destino: </Form.Label>
+                        <ReactGoogleAutocomplete
+                            className="ReactGoogleAutocomplete-input"
+                            placeholder="Ej. Ciudad de origen"
+                            name="origin"
+                            value={tripData.origin}
+                            apiKey={api}
+                            onPlaceSelected={(place) => handlePlaceSelected(place, 'origin')}
+                            options={{ types: ['(cities)'], componentRestrictions: { country: 'es' } }}
+                        />
+                    </Form.Group> */}
 
                     <Row>
                         <Col>
@@ -113,7 +151,14 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Row>
 
                     <div className="d-grid mb-2">
-                        {errors.tripData > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
+                        {errors.length > 0 && (
+                            <FormError>
+                                {errors.map((elm, index) => (
+                                    <p key={index}>{elm}</p>
+                                ))}
+                            </FormError>
+                        )}
+
                         <Button variant="primary" type="submit" //disabled={loadingImage}
                         >
                             Crear nuevo viaje
@@ -121,6 +166,8 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </div>
                 </Form>
             </div>
+
+
         </Container>
     )
 }

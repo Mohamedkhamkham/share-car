@@ -1,13 +1,9 @@
-import Alert from "react-bootstrap/alert"
-
-const FormError = (Children) => {
-
+const FormError = ({ children }) => {
     return (
-        <Alert variant={danger}>
+        <div className="alert alert-danger" role="alert">
+            {children}
+        </div>
+    );
+};
 
-            {Children}
-        </Alert>
-    )
-}
-
-export default FormError
+export default FormError;
