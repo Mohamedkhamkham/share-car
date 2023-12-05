@@ -1,32 +1,50 @@
+/* Carousel.css */
 .carousel-container {
     width: 50%;
     margin: auto;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 200px;
 }
 
 .image-container {
     position: relative;
     width: 100%;
-    padding-top: 100%;
+    padding-top: 10%; /* Ajusta este valor según tus necesidades */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    margin: 80px;
 }
 
 .text-container {
     position: absolute;
-    bottom: 2px;
+    bottom: 10px;
     left: 0;
     right: 0;
     color: black;
-    padding: 16vh;
-    margin-top: 2px;
+    margin: 2px; /* Margen entre el texto y la imagen */
+    max-height: 4.5em; /* Ajusta este valor para permitir hasta 4 líneas */
+    overflow: hidden;
+    padding: 10px; /* Espaciado alrededor del texto */
 }
+
+/* Carousel.css */
+/* ... (código anterior) */
+
+.text {
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+    -webkit-box-orient: vertical;
+}
+
