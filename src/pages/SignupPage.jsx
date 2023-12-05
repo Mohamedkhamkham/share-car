@@ -4,20 +4,13 @@ import SignupForm from '../components/SignupForm/SignupForm'
 const SignupPage = () => {
     return (
         <Container>
-
             <Row>
-
                 <Col md={{ span: 6, offset: 3 }}>
-
                     <h1>Registro</h1>
-
                     <hr />
-
                     <SignupForm />
-
                 </Col>
             </Row>
-
         </Container>
     )
 }

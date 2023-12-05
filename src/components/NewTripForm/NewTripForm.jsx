@@ -38,10 +38,7 @@ const NewTripForm = ({ fireFinalActions }) => {
             })
     }
 
-
-
     const handleFileUpload = e => {
-
 
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
@@ -62,6 +59,7 @@ const NewTripForm = ({ fireFinalActions }) => {
     return (
         <Container className="d-flex align-items-center justify-content-center ">
             <div className="newTripPage">
+
                 <Form onSubmit={handleTripSubmit}>
                     <Form.Group className="mb-3" controlId="origin">
                         <Form.Label>Origen: </Form.Label>
@@ -80,24 +78,28 @@ const NewTripForm = ({ fireFinalActions }) => {
                                 <Form.Control type="date" value={tripData.date} name="date" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
+
                         <Col>
                             <Form.Group className="mb-3" controlId="time">
                                 <Form.Label>Hora: </Form.Label>
                                 <Form.Control type="time" value={tripData.time} name="time" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
+
                         <Col>
                             <Form.Group className="mb-3" controlId="availableSeats">
                                 <Form.Label>Asientos Disponinles</Form.Label>
                                 <Form.Control type="number" value={tripData.availableSeats} name="availableSeats" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
+
                         <Col>
                             <Form.Group className="mb-3" controlId="price">
                                 <Form.Label>Precio</Form.Label>
                                 <Form.Control type="number" value={tripData.price} name="price" onChange={handleInputChange} />
                             </Form.Group>
                         </Col>
+
                     </Row>
                     <Row>
                         <Col>
@@ -105,7 +107,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                                 <Form.Label>Imagen</Form.Label>
                                 <Form.Control type="file" onChange={handleFileUpload} />
                             </Form.Group>
-
                         </Col>
 
                     </Row>

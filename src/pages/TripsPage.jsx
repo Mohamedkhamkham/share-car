@@ -30,9 +30,9 @@ const TripsPage = () => {
         <div className="TripsPage">
             <Container>
                 <h1>VIAJES</h1>
-                <TripsList trips={trips} />
                 <Button variant='dark' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
                 <hr />
+                <TripsList trips={trips} />
             </Container>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -43,7 +43,6 @@ const TripsPage = () => {
                     <NewTripForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
             </Modal>
-
         </div>
     )
 }

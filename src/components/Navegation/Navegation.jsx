@@ -38,9 +38,6 @@ const Navegation = () => {
                                 <Link to="/misFavoritos" className="nav-link">
                                     Guardados
                                 </Link>
-
-
-
                             </>
                         ) : (
                             <>
@@ -54,7 +51,6 @@ const Navegation = () => {
                         )}
                     </Nav>
                     {loggedUser &&
-
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Brand className='d-flex nav-link' as={Link} to="/perfil">
 
@@ -65,10 +61,8 @@ const Navegation = () => {
                                 <Link className='nav-link' onClick={logout}>Cerrar sesión</Link>
                             </Nav>
                         </Navbar.Collapse>
-
                     }
                     {theme === 'light' ? <img className='luna' src={luna} alt="" size="sm" onClick={swhitchTheme} /> : <img className='luna' src={sol} alt="" size="sm" onClick={swhitchTheme} />}
-
                 </Navbar.Collapse>
             </Container>
 

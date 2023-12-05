@@ -1,11 +1,6 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { APIProvider, Map, Marker, useMarkerRef } from '@vis.gl/react-google-maps'
-import { useNavigate } from 'react-router-dom'
-
-
-
-
-
+// import { useNavigate } from 'react-router-dom'
 
 const MapRender = () => {
     //  const [trip, setTrips] = useState([])
@@ -23,7 +18,6 @@ const MapRender = () => {
     //     navigate(`/viajes/${tripId}`)
     // }
 
-
     const mapStyle = {
         height: '400px',
         width: '100%',
@@ -38,17 +32,12 @@ const MapRender = () => {
     //         .catch(err => console.log(err))
     // }
 
-
-
-
     // const loadTrips = () => {
     //     TripService
     //         .getTrips(loggedUser._id)
     //         .then(({ data }) => setTrips(data))
     //         .catch(err => console.log(err));
     // }
-
-
 
     return (
         <APIProvider apiKey={'apikey'}>
@@ -69,4 +58,5 @@ const MapRender = () => {
 
     )
 }
+
 export default MapRender

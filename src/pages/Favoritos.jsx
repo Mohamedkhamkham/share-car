@@ -19,7 +19,6 @@ const FavoritosPage = () => {
             .getFavoritos(id)
             .then(({ data }) => {
                 const newIdsFavoritos = data.trips;
-                console.log("Fav from API:", newIdsFavoritos); // Log to check the data
                 setTrips(newIdsFavoritos);
             })
             .catch(err => console.log(err))
@@ -33,7 +32,7 @@ const FavoritosPage = () => {
     return (
         <div className="TripsPage">
             <Container>
-                <h1>VIAJES</h1>
+                <h1>FAVORITOS</h1>
                 <TripsList trips={trips} />
                 <Button variant='dark' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
                 <hr />
@@ -47,7 +46,6 @@ const FavoritosPage = () => {
                     <NewTripForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
             </Modal>
-
         </div>
     )
 }

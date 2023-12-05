@@ -26,11 +26,6 @@ class ReservaService {
     reservaTrip(trip) {
         return this.api.post(`/`, trip)
     }
-
-    // cancelarTrip(id, trip) {
-    //     return this.api.delete(`/${id}`, trip)
-    // }
-
 }
 
 

@@ -33,7 +33,7 @@ const ReservaPage = () => {
     return (
         <div className="TripsPage">
             <Container>
-                <h1>VIAJES</h1>
+                <h1>RESERVAS</h1>
                 <TripsList trips={trips} />
                 <Button variant='dark' size='sm' onClick={() => setShowModal(true)}>Crear Nuevo</Button>
                 <hr />

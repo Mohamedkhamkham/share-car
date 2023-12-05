@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap'
 import NewTripForm from '../components/NewTripForm/NewTripForm'
 import { useNavigate } from 'react-router-dom'
 
