@@ -2,6 +2,8 @@ import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { useState } from 'react'
 import TripService from '../../services/trips.services'
 import uploadServices from '../../services/upload.services'
+import FormError from '../FormError/FormError'
+
 
 const NewTripForm = ({ fireFinalActions }) => {
 
@@ -16,7 +18,7 @@ const NewTripForm = ({ fireFinalActions }) => {
     })
 
     const [loadingImage, setLoadingImage] = useState(true)
-
+    const [errors, setErrors] = useState([])
 
     const handleInputChange = e => {
         const { value, name } = e.currentTarget
@@ -24,7 +26,6 @@ const NewTripForm = ({ fireFinalActions }) => {
     }
 
 
-    const [errors, setErrors] = useState([])
     const handleTripSubmit = e => {
         e.preventDefault()
 
@@ -112,7 +113,9 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Row>
 
                     <div className="d-grid mb-2">
-                        <Button variant="primary" type="submit" disabled={loadingImage} >
+                        {errors.tripData > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
+                        <Button variant="primary" type="submit" //disabled={loadingImage}
+                        >
                             Crear nuevo viaje
                         </Button>
                     </div>
