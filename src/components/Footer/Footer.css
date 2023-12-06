@@ -4,9 +4,29 @@ footer {
     font-size: .6em;
     padding: 4px;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
     left: 0;
+}
+
+/* Footer.css */
+
+/* Estilo de los enlaces de iconos */
+.icon-link {
+  color: inherit; /* Hereda el color del padre (puede ser blanco o negro dependiendo del tema) */
+  text-decoration: none; /* Elimina la decoración del enlace */
+  font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+  margin-right: 12px; /* Añade margen a la derecha para separar los iconos */
+}
+
+/* Estilo del texto */
+.text-muted {
+  color: inherit; /* Hereda el color del padre (puede ser blanco o negro dependiendo del tema) */
+}
+/* Footer.css */
+
+/* Estilo del texto */
+h4 {
+  color: inherit; /* Hereda el color del padre (puede ser blanco o negro dependiendo del tema) */
 }
 

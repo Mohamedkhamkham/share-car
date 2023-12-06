@@ -15,6 +15,7 @@ const TripsList = ({ trips }) => {
             .getFavoritos(loggedUser._id)
             .then(favs => setUserFavs(favs.data))
             .catch(err => console.log(err))
+
     }, [])
 
     return (
@@ -24,7 +25,7 @@ const TripsList = ({ trips }) => {
             <>
                 <Row>
                     {
-                        trips.map(elm => <TripsCard {...elm} key={elm._id} userFavs={userFavs.trips} />)
+                        trips.map(elm => <TripsCard {...elm} key={elm._id} userFavs={(userFavs) ? userFavs.trips : null} />)
                     }
                 </Row>
             </>

@@ -9,7 +9,6 @@
 .image-container {
     position: relative;
     width: 100%;
-    padding-top: 10%; /* Ajusta este valor según tus necesidades */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -22,6 +21,7 @@
     width: auto;
     height: auto;
     margin: 80px;
+    
 }
 
 .text-container {
@@ -30,16 +30,18 @@
     left: 0;
     right: 0;
     color: black;
-    margin: 2px; /* Margen entre el texto y la imagen */
-    max-height: 4.5em; /* Ajusta este valor para permitir hasta 4 líneas */
+    max-height: 4em; /* Ajusta este valor para permitir hasta 4 líneas */
     overflow: hidden;
     padding: 10px; /* Espaciado alrededor del texto */
+    /* width: 100%; */
 }
 
 /* Carousel.css */
 /* ... (código anterior) */
 
 .text {
+
+
     margin-top: 2px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -48,3 +50,7 @@
     -webkit-box-orient: vertical;
 }
 
+
+.width{
+    max-width: 100px;
+}

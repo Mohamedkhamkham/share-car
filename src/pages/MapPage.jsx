@@ -1,15 +1,15 @@
-import MapRender from "../components/Map/Map";
-import Carousel2 from "../components/Carousel/Carousel";
+import Carousel from "../components/Carousel/Carousel"
+import MapMarker from "../components/Map/MapMarker"
 import { mapImages } from "../consts/trip-consts";
 
 const MapPage = () => {
-
     return (
-        <>
-            <MapRender />
-            <Carousel2 images={mapImages} />
-        </>
-    );
-};
+        <div>
+            <Carousel images={mapImages} />
+            <MapMarker />
+        </div>
+    )
+}
 
-export default MapPage;
+export default MapPage
+

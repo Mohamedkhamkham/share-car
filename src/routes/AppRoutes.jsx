@@ -9,14 +9,17 @@ import PrivateRoute from '../routes/PrivateRoute';
 import ReservaPage from '../pages/ReservasPage';
 import FavoritosPage from '../pages/Favoritos';
 import MapPage from '../pages/MapPage';
+import AutoComplete from '../components/Autocomplete';
 
 const AppRoutes = () => {
     return (
-        <Routes>
-            <Route path={'/'} element={<p>INICIO</p>} />
+        <Routes className="p-2">
+
             <Route path={'/registro'} element={<SignupPage />} />
             <Route path={'/inicio-sesion'} element={<LoginPage />} />
             <Route path={'/map'} element={<MapPage />} />
+            <Route path={'/prueba'} element={<AutoComplete />} />
+
 
             <Route element={<PrivateRoute />}>
                 <Route path={'/perfil'} element={<ProfilePage />} />

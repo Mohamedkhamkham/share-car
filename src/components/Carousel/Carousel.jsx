@@ -36,9 +36,11 @@ function Carousel2(props) {
                     alt=""
                     className="carousel-image"
                 />
+
                 <div className="text-container">
                     {props.images[position].text}
                 </div>
+
             </div>
         </div>
     );

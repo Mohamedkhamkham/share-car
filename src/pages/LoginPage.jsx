@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm/LoginForm'
 const LoginPage = () => {
 
     return (
-        <Container>
+        <Container className='contenedor'>
             <Row>
                 <Col md={{ offset: 3, span: 6 }}>
                     <h1>Acceso</h1>

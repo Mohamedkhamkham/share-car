@@ -4,6 +4,7 @@
 }
 
 .LikeButton {
+  cursor: pointer;
   width: 20px;
   position: left;
   display: block;

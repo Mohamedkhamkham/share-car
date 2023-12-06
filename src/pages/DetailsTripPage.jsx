@@ -136,7 +136,7 @@ const DetailsTripPage = () => {
     }
 
     return (
-        <Container className="d-flex align-items-center justify-content-center ">
+        <Container className="d-flex p-1 align-items-center justify-content-center ">
             <div className="NewTripForm">
                 <h1>Detalles del viaje</h1>
                 <Form onSubmit={handleTripSubmit}>

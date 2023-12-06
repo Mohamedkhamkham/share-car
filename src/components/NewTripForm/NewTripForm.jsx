@@ -18,7 +18,12 @@ const NewTripForm = ({ fireFinalActions }) => {
         price: 0,
         image: "",
         trip: 1,
-        owner: 1
+        owner: 1,
+        latitudeOrigin: '',
+        longitudeOrigin: '',
+        latitudeDestination: '',
+        longitudeDestination: ''
+
     })
 
     const [loadingImage, setLoadingImage] = useState(true)
@@ -96,6 +101,26 @@ const NewTripForm = ({ fireFinalActions }) => {
                         <Form.Label>Destino: </Form.Label>
                         <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
                     </Form.Group>
+
+
+                    <Form.Group className="mb-3" controlId="longitudeOrigin">
+                        <Form.Label>longitude Origin: </Form.Label>
+                        <Form.Control type="text" value={tripData.longitudeOrigin} name="longitudeOrigin" onChange={handleInputChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="latitudeOrigin">
+                        <Form.Label>latitude Origin: </Form.Label>
+                        <Form.Control type="text" value={tripData.latitudeOrigin} name="latitudeOrigin" onChange={handleInputChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="longitudeDestination">
+                        <Form.Label>longitude Destination: </Form.Label>
+                        <Form.Control type="text" value={tripData.longitudeDestination} name="longitudeDestination" onChange={handleInputChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="latitudeDestination">
+                        <Form.Label>latitude Destination: </Form.Label>
+                        <Form.Control type="text" value={tripData.latitudeDestination} name="latitudeDestination" onChange={handleInputChange} />
+                    </Form.Group>
+
+
 
                     {/* <Form.Group className="mb-3" controlId="destination">
                         <Form.Label>Destino: </Form.Label>

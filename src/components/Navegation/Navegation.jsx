@@ -39,6 +39,7 @@ const Navegation = () => {
                                 <Link to="/misFavoritos" className="nav-link">
                                     Guardados
                                 </Link>
+
                             </>
                         ) : (
                             <>

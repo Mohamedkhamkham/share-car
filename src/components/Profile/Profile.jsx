@@ -123,7 +123,7 @@ const Profile = () => {
 
                 </Form>
 
-                <Modal show={showModal} onHide={() => Navigate('/')}>
+                <Modal show={showModal} onHide={() => Navigate('/map')}>
                     <Modal.Header closeButton>
                         <Modal.Title>Actualizado</Modal.Title>
                     </Modal.Header>

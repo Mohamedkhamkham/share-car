@@ -27,7 +27,7 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(() => navigate('/'))
+            .then(() => navigate('/map'))
             .catch(err => console.log(err))
     }
 
