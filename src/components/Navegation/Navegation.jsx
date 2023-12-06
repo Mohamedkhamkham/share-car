@@ -13,6 +13,7 @@ const Navegation = () => {
     const { theme, swhitchTheme } = useContext(ThemeContext);
     const { loggedUser, logout } = useContext(AuthContext);
     const [expanded, setExpanded] = useState(false);
+    console.log("--------------------", loggedUser)
 
     const handleNavClose = () => setExpanded(false);
 
@@ -38,9 +39,6 @@ const Navegation = () => {
                                 <Link to="/misFavoritos" className="nav-link">
                                     Guardados
                                 </Link>
-
-
-
                             </>
                         ) : (
                             <>

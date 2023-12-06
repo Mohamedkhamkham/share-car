@@ -28,7 +28,7 @@ const LoginForm = () => {
                 authenticateUser()
                 navigate('/map')
             })
-            .catch(err => next(err))
+            .catch(err => console.log(err))
     }
 
     return (

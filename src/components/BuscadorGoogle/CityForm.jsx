@@ -12,7 +12,7 @@ const AutocompleteInput = () => {
         <ReactGoogleAutocomplete
             apiKey={GoogleMapsApiKey}
             onPlaceSelected={handlePlaceSelected}
-            options={{ types: ['(cities)'], componentRestrictions: { country: 'us' } }}
+            options={{ types: ['(cities)'], componentRestrictions: { country: 'sp' } }}
         />
     );
 };

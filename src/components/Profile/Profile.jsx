@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react"
 import { Form, Button, Modal, Row, Col, Container, Image } from "react-bootstrap"
-import authService from "../../services/auth.services"
+
 
 import { Navigate, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import userService from "../../services/user.services"
+import uploadServices from '../../services/upload.services'
 
 const Profile = () => {
 
@@ -17,10 +18,11 @@ const Profile = () => {
         imageUrl: ''
 
     })
+    const [loadingImage, setLoadingImage] = useState(true)
 
     const [showModal, setShowModal] = useState(false)
 
-    const navigate = useNavigate()
+    const Navigate = useNavigate()
 
     const { loggedUser } = useContext(AuthContext);
 
@@ -42,6 +44,24 @@ const Profile = () => {
             .updateUser(loggedUser._id, userData)
             .then(() => setShowModal(true))
             .catch(err => console.log(err))
+    }
+
+    const handleFileUpload = e => {
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setUserData({ ...userData, imageUrl: res.data.cloudinary_url })
+                setLoadingImage(false)
+
+            })
+            .catch(err => {
+                console.log(err)
+                setLoadingImage(true)
+            })
     }
 
     useEffect(() => {
@@ -67,11 +87,11 @@ const Profile = () => {
                             </Form.Group>
                         </Col>
 
-
                         {/* <Form.Group className="mb-3" controlId="password">
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control type="password" value={userData.password} onChange={handleInputChange} name="password" />
                         </Form.Group> */}
+
                         <Col>
                             <Form.Group>
                                 <Form.Label>Nombre de usuario</Form.Label>
@@ -90,10 +110,12 @@ const Profile = () => {
                         <Form.Control type="text" value={userData.carColor} onChange={handleInputChange} name="carColor" />
                     </Form.Group>
 
-                    <Form.Group className="mb-1" controlId="imageUrl">
-                        <Form.Label>Foto de perfil</Form.Label>
-                        <Form.Control type="text" value={userData.imageUrl || ''} onChange={handleInputChange} name="imageUrl" />
-                    </Form.Group>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="imageUrl">
+                            <Form.Label>Imagen</Form.Label>
+                            <Form.Control type="file" onChange={handleFileUpload} />
+                        </Form.Group>
+                    </Col>
 
                     <div className="d-grid">
                         <Button variant="primary" type="submit">Actualizar</Button>
@@ -101,7 +123,7 @@ const Profile = () => {
 
                 </Form>
 
-                <Modal show={showModal} onHide={() => navigate('/')}>
+                <Modal show={showModal} onHide={() => Navigate('/')}>
                     <Modal.Header closeButton>
                         <Modal.Title>Actualizado</Modal.Title>
                     </Modal.Header>

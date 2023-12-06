@@ -9,7 +9,7 @@ import heartOff from './../../assets/corazon-sin-relleno.svg'
 import FavoritosService from "../../services/favoritos.services"
 import { formatDate } from "../../utils/date-utils"
 
-const TripsCard = ({ _id, origin, destination, date, image }) => {
+const TripsCard = ({ _id, origin, destination, date, image, userFavs }) => {
 
     const { loggedUser } = useContext(AuthContext)
     const [idsFavoritos, setIdsFavoritos] = useState([])
@@ -40,13 +40,13 @@ const TripsCard = ({ _id, origin, destination, date, image }) => {
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
 
                         <div className="LikeButton" onClick={addFavorite}>
-                            <img src={idsFavoritos.includes(_id) ? heartOn : heartOff} alt="" />
+                            <img src={userFavs?.some(fav => fav._id === _id) ? heartOn : heartOff} alt="" />
                         </div>
 
                         <hr />
 
                         <div className="d-grid gap-2">
-                            <Link to={`/detalles/${_id}`} className="btn btn-primary btn-sm">
+                            <Link to={`/detalles/${_id}`} className="btn btn-dark btn-sm">
                                 Ver Detalles
                             </Link>
                         </div>

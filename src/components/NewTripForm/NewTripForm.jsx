@@ -3,7 +3,7 @@ import { useState } from 'react'
 import TripService from '../../services/trips.services'
 import uploadServices from '../../services/upload.services'
 import FormError from '../FormError/FormError'
-import ReactGoogleAutocomplete from "react-google-autocomplete"
+// import ReactGoogleAutocomplete from "react-google-autocomplete"
 // import CityForm from '../BuscadorGoogle/CityForm'
 
 
@@ -159,7 +159,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                             </FormError>
                         )}
 
-                        <Button variant="primary" type="submit" //disabled={loadingImage}
+                        <Button variant="primary" type="submit" disabled={loadingImage}
                         >
                             Crear nuevo viaje
                         </Button>

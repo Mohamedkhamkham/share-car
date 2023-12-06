@@ -24,7 +24,7 @@ class TripService {
 
     }
 
-    getTrips(id = null) {
+    getTrips(id) {
         const call = id ? this.api.get(`/getAllTrips/${id}`) : this.api.get('/getAllTrips');
         return call
     }
