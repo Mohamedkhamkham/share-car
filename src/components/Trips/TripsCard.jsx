@@ -24,7 +24,7 @@ const TripsCard = ({ _id, origin, destination, date, image, userFavs }) => {
         FavoritosService
             .favoritoTrip(body)
             .then(({ data }) => {
-                setIdsFavoritos(data.trips);
+                userFavs = data.trips
             })
             .catch(err => console.log(err))
     }
