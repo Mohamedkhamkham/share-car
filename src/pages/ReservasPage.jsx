@@ -11,15 +11,14 @@ const ReservaPage = () => {
     const { loggedUser } = useContext(AuthContext)
 
     useEffect(() => {
-        loadTrips(loggedUser._id)
+        loadBookings()
     }, [loggedUser._id]);
 
-    const loadTrips = (id) => {
+    const loadBookings = () => {
         ReservaService
-            .getReserva(id)
+            .getReserva(loggedUser._id)
             .then(({ data }) => {
                 const newIdsReservados = data.trips;
-                console.log("Reservas from API:", newIdsReservados)
                 setTrips(newIdsReservados);
             })
             .catch(err => console.log(err))
@@ -27,7 +26,7 @@ const ReservaPage = () => {
 
     const fireFinalActions = () => {
         setShowModal(false)
-        loadTrips(loggedUser._id);
+        loadBookings();
     }
 
     return (

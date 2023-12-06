@@ -24,9 +24,9 @@ const Profile = () => {
 
     const { loggedUser } = useContext(AuthContext);
 
-    const getUser = (id) => {
+    const getUser = () => {
         userService
-            .getById(id)
+            .getById(loggedUser._id)
             .then(({ data }) => setUserData(data))
             .catch(err => console.log(err))
     }
@@ -45,7 +45,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        getUser(loggedUser._id)
+        getUser()
     }, [])
 
     return (

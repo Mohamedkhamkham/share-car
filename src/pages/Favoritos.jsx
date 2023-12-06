@@ -11,12 +11,12 @@ const FavoritosPage = () => {
     const { loggedUser } = useContext(AuthContext)
 
     useEffect(() => {
-        loadTrips(loggedUser._id)
+        loadFavorites()
     }, [loggedUser._id]);
 
-    const loadTrips = (id) => {
+    const loadFavorites = () => {
         FavoritosService
-            .getFavoritos(id)
+            .getFavoritos(loggedUser._id)
             .then(({ data }) => {
                 const newIdsFavoritos = data.trips;
                 setTrips(newIdsFavoritos);
@@ -26,7 +26,7 @@ const FavoritosPage = () => {
 
     const fireFinalActions = () => {
         setShowModal(false)
-        loadTrips(loggedUser._id);
+        loadFavorites();
     }
 
     return (

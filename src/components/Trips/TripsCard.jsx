@@ -7,45 +7,24 @@ import { useState } from 'react'
 import heartOn from './../../assets/corazon-relleno.svg'
 import heartOff from './../../assets/corazon-sin-relleno.svg'
 import FavoritosService from "../../services/favoritos.services"
+import { formatDate } from "../../utils/date-utils"
 
 const TripsCard = ({ _id, origin, destination, date, image }) => {
 
     const { loggedUser } = useContext(AuthContext)
-    const body = {
-        user_id: loggedUser._id,
-        trip_id: _id
-    }
-
     const [idsFavoritos, setIdsFavoritos] = useState([])
 
-    const favorite = e => {
-        e.preventDefault()
+    const addFavorite = () => {
+
+        const body = {
+            user_id: loggedUser._id,
+            trip_id: _id
+        }
+
         FavoritosService
             .favoritoTrip(body)
             .then(({ data }) => {
-                const recu = data.trips.map(el => el)
-                setIdsFavoritos(recu);
-            })
-            .catch(err => console.log(err))
-    }
-
-    const formatDate = (date) => {
-        const d = new Date(date);
-        const year = d.getFullYear().toString();
-        const month = (d.getMonth() + 101).toString().substring(1);
-        const day = (d.getDate() + 100).toString().substring(1);
-        return day + "-" + month + "-" + year;
-    }
-
-    useEffect(() => {
-        loadTrips(loggedUser._id)
-    }, [loggedUser._id]);
-
-    const loadTrips = (id) => {
-        FavoritosService
-            .getFavoritos(id)
-            .then(({ data }) => {
-                setIdsFavoritos(data.trips.map(el => el._id));
+                setIdsFavoritos(data.trips);
             })
             .catch(err => console.log(err))
     }
@@ -60,7 +39,7 @@ const TripsCard = ({ _id, origin, destination, date, image }) => {
                         <Card.Title className="mb-2">Destino: {destination}</Card.Title>
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
 
-                        <div className="LikeButton" onClick={favorite}>
+                        <div className="LikeButton" onClick={addFavorite}>
                             <img src={idsFavoritos.includes(_id) ? heartOn : heartOff} alt="" />
                         </div>
 
