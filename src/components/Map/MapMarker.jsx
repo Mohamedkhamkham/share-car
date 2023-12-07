@@ -19,18 +19,20 @@ const MapMarker = () => {
     const mapStyle = {
         height: '400px',
         width: '60%',
+        margin: '100px',
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.9)'
     }
     const mapContainerStyle = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '100px',
-    }
+
+    };
+
     const loadEvents = () => {
         TripServices
             .getTrips()
             .then(({ data }) => {
-                console.log('Eventos cargados:', data)
                 setTrips(data)
             })
             .catch(err => console.log(err))
@@ -47,6 +49,10 @@ const MapMarker = () => {
                             position={{
                                 lng: trip.location.coordinatesDestination[1],
                                 lat: trip.location.coordinatesDestination[0],
+                            }}
+                            icon={{
+                                url: "https://cdn-icons-png.flaticon.com/128/2554/2554896.png",
+                                scaledSize: new window.google.maps.Size(50, 50)
                             }}
 
                             onClick={() => handleMarkerClick(trip._id)}

@@ -69,7 +69,7 @@ const Profile = () => {
     }, [])
 
     return (
-        <Container className="d-flex align-items-center justify-content-center">
+        <Container className="d-flex align-items-center justify-content-center" style={{ marginBottom: '20px' }}>
             <div className="justify-content-center align-items-center mx-auto">
                 <div className=" d-flex align-items-center mx-auto justify-content-center ">
                     <h1>Perfil</h1>
@@ -86,11 +86,6 @@ const Profile = () => {
                                 <Form.Control type="email" value={userData.email} onChange={handleInputChange} name="email" />
                             </Form.Group>
                         </Col>
-
-                        {/* <Form.Group className="mb-3" controlId="password">
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type="password" value={userData.password} onChange={handleInputChange} name="password" />
-                        </Form.Group> */}
 
                         <Col>
                             <Form.Group>
@@ -118,7 +113,7 @@ const Profile = () => {
                     </Col>
 
                     <div className="d-grid">
-                        <Button variant="primary" type="submit">Actualizar</Button>
+                        <Button variant="dark" type="submit">Actualizar</Button>
                     </div>
 
                 </Form>

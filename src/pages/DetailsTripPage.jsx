@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Form, ButtonGroup, Button, Card, Col, Row, Container } from "react-bootstrap"
+import { Form, ButtonGroup, Button, Col, Row, Container } from "react-bootstrap"
 import TripService from "../services/trips.services"
 import ReservaService from "../services/reserva.services"
 import { useParams } from "react-router-dom"
@@ -13,7 +13,7 @@ const DetailsTripPage = () => {
 
     const navigate = useNavigate()
     const { loggedUser } = useContext(AuthContext)
-    let idsReservados = [];
+    let idsReservados = []
     const formatDate = (date) => {
 
         const fechaObjeto = new Date(date)
@@ -118,7 +118,6 @@ const DetailsTripPage = () => {
 
     const handleFileUpload = e => {
 
-
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
 
@@ -140,7 +139,7 @@ const DetailsTripPage = () => {
             <div className="NewTripForm">
                 <h1>Detalles del viaje</h1>
                 <Form onSubmit={handleTripSubmit}>
-                    {/* Origen y Destino */}
+                  
                     <Row className>
                         <Col md={12}>
                             <Form.Group controlId="origin">
@@ -156,7 +155,6 @@ const DetailsTripPage = () => {
                         </Col>
                     </Row>
 
-                    {/* Fecha, Hora, Asientos disponibles y Precio */}
                     <Row className="mb-3">
                         <Col md={3}>
                             <Form.Group controlId="date">
@@ -198,7 +196,6 @@ const DetailsTripPage = () => {
                             : ''
                     }
 
-
                     {/* Botones */}
                     <Row>
                         {loggedUser._id === trip.owner &&
@@ -212,12 +209,9 @@ const DetailsTripPage = () => {
 
                         {loggedUser._id != trip.owner &&
                             <ButtonGroup className="d-flex justify-content-center m-1">
-                                {/* {console.log(reserva)} */}
 
                                 {reservas.includes(trip_id) ? <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> : <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>}
 
-                                {/* <Button variant="success" size="lg" onClick={agregarTripSubmit}>Reservar</Button>
-                                <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> */}
                             </ButtonGroup>
                         }
 

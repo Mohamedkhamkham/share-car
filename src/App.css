@@ -1,32 +1,34 @@
 
 
-/* Importar la fuente Open Sans */
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+*{font-family: Bubbles;}
 
-/* Aplicar la fuente a un elemento */
+
+
 body {
   font-family: 'Open Sans', sans-serif;
 
   font-weight: 100;
 }
-/* 
-body{
-  
-font-family: sans-serif;
-font-weight: 100;
-} */
+
 
 .imgProfile{
-    width: 30vh;
-    height: 30vh;
+    width: 25vh;
+    height: 25vh;
+    margin-bottom: 20px;
 }
 
 
 .contenedor{
     padding: 5%;
+
 }
 
 .contenedor-registro {
     padding-bottom: 2%;
+}
+
+.NewTripForm{
+
+      padding-bottom: 12%;
 }

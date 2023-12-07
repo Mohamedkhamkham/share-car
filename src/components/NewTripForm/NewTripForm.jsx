@@ -85,25 +85,14 @@ const NewTripForm = ({ fireFinalActions }) => {
                         <Form.Label>Origen: </Form.Label>
                         <Form.Control type="text" value={tripData.origin} name="origin" onChange={handleInputChange} />
                     </Form.Group>
-                    {/* <Form.Group className="mb-3" controlId="origin">
-                        <Form.Label>Origen: </Form.Label>
-                        <ReactGoogleAutocomplete
-                            className="ReactGoogleAutocomplete-input"
-                            placeholder="Ej. Ciudad de origen"
-                            name="origin"
-                            value={tripData.origin}
-                            apiKey={api}
-                            onPlaceSelected={(place) => handlePlaceSelected(place, 'origin')}
-                            options={{ types: ['(cities)'], componentRestrictions: { country: 'es' } }}
-                        />
-                    </Form.Group> */}
+
                     <Form.Group className="mb-3" controlId="destination">
                         <Form.Label>Destino: </Form.Label>
                         <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
                     </Form.Group>
 
 
-                    <Form.Group className="mb-3" controlId="longitudeOrigin">
+                    {/* <Form.Group className="mb-3" controlId="longitudeOrigin">
                         <Form.Label>longitude Origin: </Form.Label>
                         <Form.Control type="text" value={tripData.longitudeOrigin} name="longitudeOrigin" onChange={handleInputChange} />
                     </Form.Group>
@@ -118,21 +107,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Form.Group className="mb-3" controlId="latitudeDestination">
                         <Form.Label>latitude Destination: </Form.Label>
                         <Form.Control type="text" value={tripData.latitudeDestination} name="latitudeDestination" onChange={handleInputChange} />
-                    </Form.Group>
-
-
-
-                    {/* <Form.Group className="mb-3" controlId="destination">
-                        <Form.Label>Destino: </Form.Label>
-                        <ReactGoogleAutocomplete
-                            className="ReactGoogleAutocomplete-input"
-                            placeholder="Ej. Ciudad de origen"
-                            name="origin"
-                            value={tripData.origin}
-                            apiKey={api}
-                            onPlaceSelected={(place) => handlePlaceSelected(place, 'origin')}
-                            options={{ types: ['(cities)'], componentRestrictions: { country: 'es' } }}
-                        />
                     </Form.Group> */}
 
                     <Row>
@@ -184,7 +158,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                             </FormError>
                         )}
 
-                        <Button variant="primary" type="submit" disabled={loadingImage}
+                        <Button variant="dark" type="submit" disabled={loadingImage}
                         >
                             Crear nuevo viaje
                         </Button>

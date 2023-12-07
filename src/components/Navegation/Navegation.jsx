@@ -13,7 +13,6 @@ const Navegation = () => {
     const { theme, swhitchTheme } = useContext(ThemeContext);
     const { loggedUser, logout } = useContext(AuthContext);
     const [expanded, setExpanded] = useState(false);
-    console.log("--------------------", loggedUser)
 
     const handleNavClose = () => setExpanded(false);
 
@@ -57,9 +56,13 @@ const Navegation = () => {
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Brand className='d-flex nav-link' as={Link} to="/perfil">
 
-                                <Image className="perfil" src={(loggedUser.imageUrl != null && loggedUser.imageUrl.trim() !== "") ? loggedUser.imageUrl : "../../../public/icono_sin.png"} roundedCircle />
+                                <p></p>
+                                {/* <Image className="perfil" src={(loggedUser.imageUrl != null && loggedUser.imageUrl.trim() !== "") ? loggedUser.imageUrl : "../../../public/icono_sin.png"} roundedCircle /> */}
 
                             </Navbar.Brand>
+                            <Nav>
+                                <Link className='nav-link' as={Link} to="/perfil">Hola, {loggedUser.username}!</Link>
+                            </Nav>
                             <Nav>
                                 <Link className='nav-link' onClick={logout}>Cerrar sesión</Link>
                             </Nav>

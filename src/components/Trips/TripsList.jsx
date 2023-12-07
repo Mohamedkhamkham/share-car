@@ -9,17 +9,6 @@ const TripsList = ({ trips }) => {
     const { loggedUser } = useContext(AuthContext)
     const [userFavs, setUserFavs] = useState({})
 
-    useEffect(() => {
-        loadFavs()
-    }, [])
-
-    const loadFavs = () => {
-        FavoritosService
-            .getFavoritos(loggedUser._id)
-            .then(favs => { setUserFavs(favs.data) })
-            .catch(err => console.log(err))
-
-    }
     return (
 
         !trips ?
@@ -28,7 +17,7 @@ const TripsList = ({ trips }) => {
             <>
                 <Row>
                     {
-                        trips.map(elm => <TripsCard {...elm} key={elm._id} loadFavs={loadFavs} userFavs={userFavs.trips} />)
+                        trips.map(elm => <TripsCard {...elm} key={elm._id} />)
                     }
                 </Row>
             </>

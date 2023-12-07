@@ -1,6 +1,6 @@
 import { Card, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import heartOn from './../../assets/corazon-relleno.svg'
 import heartOff from './../../assets/corazon-sin-relleno.svg'
@@ -8,10 +8,10 @@ import FavoritosService from "../../services/favoritos.services"
 import { formatDate } from "../../utils/date-utils"
 import './TripsCard.css'
 
-const TripsCard = ({ _id, origin, destination, date, image, userFavs, loadFavs }) => {
+const TripsCard = ({ _id, origin, destination, date, image }) => {
     const { loggedUser } = useContext(AuthContext);
 
-    const [isFavorite, setIsFavorite] = useState(userFavs?.some(fav => fav._id === _id))
+    const [userFavs, setUserFavs] = useState([])
 
     const addFavorite = () => {
         const body = {
@@ -21,11 +21,28 @@ const TripsCard = ({ _id, origin, destination, date, image, userFavs, loadFavs }
 
         FavoritosService.favoritoTrip(body)
             .then(({ data }) => {
-                setIsFavorite(!isFavorite)
-                loadFavs()
+                setUserFavs(data.trips)
             })
             .catch(err => console.log(err))
     };
+
+    useEffect(() => {
+        loadFavs()
+    }, [])
+
+    const loadFavs = () => {
+        FavoritosService
+            .getFavoritos(loggedUser._id)
+            .then((favs) => {
+                if (favs.data.trips.length > 0) {
+                    const ids = favs.data.trips.map(el => el._id)
+                    setUserFavs(ids)
+                }
+
+            })
+            .catch(err => console.log(err))
+
+    }
 
     return (
         <Col lg={{ span: 3 }} md={{ span: 6 }}>
@@ -38,7 +55,7 @@ const TripsCard = ({ _id, origin, destination, date, image, userFavs, loadFavs }
                         <Card.Title className="mb-2">Fecha: {formatDate(date)}</Card.Title>
 
                         <div className="LikeButton" onClick={addFavorite}>
-                            <img src={isFavorite ? heartOn : heartOff} />
+                            <img src={userFavs.includes(_id) ? heartOn : heartOff} />
                         </div>
 
                         <hr />
