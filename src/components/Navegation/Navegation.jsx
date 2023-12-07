@@ -20,7 +20,7 @@ const Navegation = () => {
     return (
         <Navbar bg={theme} expand="lg" className="mb-4">
             <Container>
-                <Navbar.Brand as={Link} to="/map" className="nav-link">
+                <Navbar.Brand as={Link} to="/" className="nav-link">
 
                     {theme === 'light' ? <img src={logo_negro} className='logo' /> : <img src={logo_blanco} className='logo' />}
 

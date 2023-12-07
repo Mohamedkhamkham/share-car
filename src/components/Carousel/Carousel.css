@@ -1,9 +1,9 @@
-/* Carousel.css */
 .carousel-container {
     width: 50%;
     margin: auto;
     text-align: center;
-    margin-bottom: 200px;
+    margin-top: 1px;
+    margin-bottom: 5px;
 }
 
 .image-container {
@@ -13,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1px;
 }
 
 .carousel-image {
@@ -20,7 +21,7 @@
     max-height: 90%;
     width: auto;
     height: auto;
-    margin: 80px;
+    margin: 60px;
     
 }
 
@@ -30,27 +31,24 @@
     left: 0;
     right: 0;
     color: black;
-    max-height: 4em; /* Ajusta este valor para permitir hasta 4 líneas */
+    max-height: 4em; 
     overflow: hidden;
-    padding: 10px; /* Espaciado alrededor del texto */
-    /* width: 100%; */
+    padding: 10px; 
+   
 }
 
-/* Carousel.css */
-/* ... (código anterior) */
+
 
 .text {
-
-
     margin-top: 2px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+    -webkit-line-clamp: 4; 
     -webkit-box-orient: vertical;
 }
-
 
 .width{
     max-width: 100px;
 }
+

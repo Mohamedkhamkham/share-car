@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import userService from '../../services/user.services'
 import TripsCard from './TripsCard'
 import { Row } from 'react-bootstrap'
 import { AuthContext } from '../../contexts/auth.context'
@@ -11,21 +10,25 @@ const TripsList = ({ trips }) => {
     const [userFavs, setUserFavs] = useState({})
 
     useEffect(() => {
-        FavoritosService
-            .getFavoritos(loggedUser._id)
-            .then(favs => setUserFavs(favs.data))
-            .catch(err => console.log(err))
-
+        loadFavs()
     }, [])
 
+    const loadFavs = () => {
+        FavoritosService
+            .getFavoritos(loggedUser._id)
+            .then(favs => { setUserFavs(favs.data) })
+            .catch(err => console.log(err))
+
+    }
     return (
+
         !trips ?
             <h1>cargando</h1>
             :
             <>
                 <Row>
                     {
-                        trips.map(elm => <TripsCard {...elm} key={elm._id} userFavs={(userFavs) ? userFavs.trips : null} />)
+                        trips.map(elm => <TripsCard {...elm} key={elm._id} loadFavs={loadFavs} userFavs={userFavs.trips} />)
                     }
                 </Row>
             </>

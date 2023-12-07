@@ -14,10 +14,9 @@ import AutoComplete from '../components/Autocomplete';
 const AppRoutes = () => {
     return (
         <Routes className="p-2">
-
+            <Route path={'/'} element={<MapPage />} />
             <Route path={'/registro'} element={<SignupPage />} />
             <Route path={'/inicio-sesion'} element={<LoginPage />} />
-            <Route path={'/map'} element={<MapPage />} />
             <Route path={'/prueba'} element={<AutoComplete />} />
 
 

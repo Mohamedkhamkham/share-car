@@ -1,41 +1,36 @@
-import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
-import authService from "../../services/auth.services"
-
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import authService from "../../services/auth.services";
+import { useNavigate } from "react-router-dom";
+import "../SignupForm/SignupForm.css"
 
 const SignupForm = () => {
-
     const [signupData, setSignupData] = useState({
-        email: '',
-        password: '',
-        username: '',
-        carModel: '',
-        carColor: '',
+        email: "",
+        password: "",
+        username: "",
+        carModel: "",
+        carColor: "",
+    });
 
-    })
+    const handleInputChange = (e) => {
+        const { value, name } = e.target;
+        setSignupData({ ...signupData, [name]: value });
+    };
 
-    const handleInputChange = e => {
-        const { value, name } = e.target
-        setSignupData({ ...signupData, [name]: value })
-    }
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    const handleFormSubmit = e => {
-        e.preventDefault()
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
 
         authService
             .signup(signupData)
-            .then(() => navigate('/map'))
-            .catch(err => console.log(err))
-    }
+            .then(() => navigate("/"))
+            .catch((err) => console.log(err));
+    };
 
     return (
-
-        <Form onSubmit={handleFormSubmit}>
-
-
+        <Form onSubmit={handleFormSubmit} className="">
             <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={signupData.email} onChange={handleInputChange} name="email" />
@@ -62,12 +57,12 @@ const SignupForm = () => {
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="primary" type="submit">Registrarme</Button>
+                <Button variant="primary" type="submit">
+                    Registrarme
+                </Button>
             </div>
         </Form>
-    )
-}
+    );
+};
 
-export default SignupForm
-
-
+export default SignupForm;

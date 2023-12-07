@@ -4,7 +4,7 @@ import { mapImages } from "../consts/trip-consts";
 
 const MapPage = () => {
     return (
-        <div>
+        <div style={{ textAlign: 'center' }}>
             <Carousel images={mapImages} />
             <MapMarker />
         </div>

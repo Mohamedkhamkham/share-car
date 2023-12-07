@@ -1,0 +1,11 @@
+.custom-small-form {
+    padding: 2px; 
+    max-width: 200px; 
+    margin: auto; 
+}
+
+.custom-small-form input,
+.custom-small-form button {
+    margin-bottom: 8px;
+    font-size: 12px;
+}

@@ -1,17 +1,17 @@
-import { Card, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../contexts/auth.context";
-import heartOn from './../../assets/corazon-relleno.svg';
-import heartOff from './../../assets/corazon-sin-relleno.svg';
-import FavoritosService from "../../services/favoritos.services";
-import { formatDate } from "../../utils/date-utils";
-import './TripsCard.css'; // Importa tu hoja de estilos
+import { Card, Col } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../contexts/auth.context"
+import heartOn from './../../assets/corazon-relleno.svg'
+import heartOff from './../../assets/corazon-sin-relleno.svg'
+import FavoritosService from "../../services/favoritos.services"
+import { formatDate } from "../../utils/date-utils"
+import './TripsCard.css'
 
-const TripsCard = ({ _id, origin, destination, date, image, userFavs }) => {
+const TripsCard = ({ _id, origin, destination, date, image, userFavs, loadFavs }) => {
     const { loggedUser } = useContext(AuthContext);
 
-    const [isFavorite, setIsFavorite] = useState(userFavs?.some(fav => fav._id === _id));
+    const [isFavorite, setIsFavorite] = useState(userFavs?.some(fav => fav._id === _id))
 
     const addFavorite = () => {
         const body = {
@@ -21,9 +21,10 @@ const TripsCard = ({ _id, origin, destination, date, image, userFavs }) => {
 
         FavoritosService.favoritoTrip(body)
             .then(({ data }) => {
-                setIsFavorite(!isFavorite);
+                setIsFavorite(!isFavorite)
+                loadFavs()
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
     };
 
     return (

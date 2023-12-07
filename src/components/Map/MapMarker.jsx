@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 import { useNavigate } from 'react-router-dom'
 import TripServices from '../../services/trips.services'
+import '../Map/MapMarker.css'
 
 const MapMarker = () => {
     const [trips, setTrips] = useState([])
@@ -16,15 +17,15 @@ const MapMarker = () => {
     }
 
     const mapStyle = {
-        height: '500px',
-        width: '80%',
+        height: '400px',
+        width: '60%',
     }
     const mapContainerStyle = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: '100px',
     }
-
     const loadEvents = () => {
         TripServices
             .getTrips()
@@ -59,4 +60,3 @@ const MapMarker = () => {
 
 export default MapMarker
 
-//AIzaSyB39i6Kh0SoXQxEFnpM81DFNfY6QWfvfE4

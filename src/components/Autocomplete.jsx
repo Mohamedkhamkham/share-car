@@ -4,8 +4,8 @@ const AutoComplete = () => {
     const autoCompleteRef = useRef();
     const inputRef = useRef();
     const options = {
-    
- }
+
+    }
     useEffect(() => {
         autoCompleteRef.current = new window.google.maps.places.Autocomplete(
             inputRef.current,
