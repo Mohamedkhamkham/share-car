@@ -8,7 +8,6 @@ import { useContext } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import uploadServices from '../../services/upload.services'
 
-
 const Detalles = () => {
 
     const navigate = useNavigate()
@@ -25,6 +24,7 @@ const Detalles = () => {
         return fechaFormateada
 
     }
+
     const [loadingImage, setLoadingImage] = useState(true)
     const { trip_id } = useParams()
 
@@ -198,7 +198,6 @@ const Detalles = () => {
                             : ''
                     }
 
-
                     {/* Botones */}
                     <Row>
                         {loggedUser._id === trip.owner &&
@@ -220,8 +219,6 @@ const Detalles = () => {
                                 <Button variant="danger" size="lg" className="ms-2" onClick={cancelarTripSubmit}>Cancelar</Button> */}
                             </ButtonGroup>
                         }
-
-
                     </Row>
                 </Form>
             </div>

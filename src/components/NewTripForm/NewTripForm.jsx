@@ -3,9 +3,6 @@ import { useState } from 'react'
 import TripService from '../../services/trips.services'
 import uploadServices from '../../services/upload.services'
 import FormError from '../FormError/FormError'
-// import ReactGoogleAutocomplete from "react-google-autocomplete"
-// import CityForm from '../BuscadorGoogle/CityForm'
-
 
 const NewTripForm = ({ fireFinalActions }) => {
     // const api = "AIzaSyC3RuJsUQ3759MGeXPIp02-hIREZpkrLqs"
@@ -33,7 +30,6 @@ const NewTripForm = ({ fireFinalActions }) => {
         const { value, name } = e.currentTarget
         setTripData({ ...tripData, [name]: value })
     }
-
 
     const handleTripSubmit = e => {
         e.preventDefault()
@@ -146,7 +142,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                                 <Form.Control type="file" onChange={handleFileUpload} />
                             </Form.Group>
                         </Col>
-
                     </Row>
 
                     <div className="d-grid mb-2">
@@ -157,16 +152,12 @@ const NewTripForm = ({ fireFinalActions }) => {
                                 ))}
                             </FormError>
                         )}
-
-                        <Button variant="dark" type="submit" disabled={loadingImage}
-                        >
+                        <Button variant="dark" type="submit" disabled={loadingImage}>
                             Crear nuevo viaje
                         </Button>
                     </div>
                 </Form>
             </div>
-
-
         </Container>
     )
 }

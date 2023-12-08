@@ -55,10 +55,7 @@ const Navegation = () => {
 
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Brand className='d-flex nav-link' as={Link} to="/perfil">
-
-                                <p></p>
                                 {/* <Image className="perfil" src={(loggedUser.imageUrl != null && loggedUser.imageUrl.trim() !== "") ? loggedUser.imageUrl : "../../../public/icono_sin.png"} roundedCircle /> */}
-
                             </Navbar.Brand>
                             <Nav>
                                 <Link className='nav-link' as={Link} to="/perfil">Hola, {loggedUser.username}!</Link>

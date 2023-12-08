@@ -28,7 +28,6 @@ class ReservaService {
     }
 }
 
-
 const reservaServiceInstance = new ReservaService()
 
 export default reservaServiceInstance

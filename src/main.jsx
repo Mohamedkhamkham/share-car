@@ -6,14 +6,12 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProviderWrapper } from './contexts/theme.context'
 import { AuthProviderWrapper } from './contexts/auth.context'
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProviderWrapper>
     <ThemeProviderWrapper>
       <Router>
         <React.StrictMode>
           <App />
-          {/* <AutoComplete /> */}
         </React.StrictMode>
       </Router>
     </ThemeProviderWrapper>

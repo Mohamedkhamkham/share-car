@@ -28,7 +28,6 @@ class FavoritosService {
     }
 }
 
-
 const FavoritosServiceInstance = new FavoritosService()
 
 export default FavoritosServiceInstance

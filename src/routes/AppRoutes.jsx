@@ -10,7 +10,6 @@ import ReservaPage from '../pages/ReservasPage';
 import FavoritosPage from '../pages/Favoritos';
 import MapPage from '../pages/MapPage';
 
-
 const AppRoutes = () => {
     return (
         <Routes className="p-2">
