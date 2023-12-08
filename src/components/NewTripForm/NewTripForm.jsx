@@ -88,7 +88,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Form.Group>
 
 
-                    {/* <Form.Group className="mb-3" controlId="longitudeOrigin">
+                    <Form.Group className="mb-3" controlId="longitudeOrigin">
                         <Form.Label>longitude Origin: </Form.Label>
                         <Form.Control type="text" value={tripData.longitudeOrigin} name="longitudeOrigin" onChange={handleInputChange} />
                     </Form.Group>
@@ -103,7 +103,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Form.Group className="mb-3" controlId="latitudeDestination">
                         <Form.Label>latitude Destination: </Form.Label>
                         <Form.Control type="text" value={tripData.latitudeDestination} name="latitudeDestination" onChange={handleInputChange} />
-                    </Form.Group> */}
+                    </Form.Group>
 
                     <Row>
                         <Col>
