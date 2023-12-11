@@ -5,7 +5,7 @@ import uploadServices from '../../services/upload.services'
 import FormError from '../FormError/FormError'
 
 const NewTripForm = ({ fireFinalActions }) => {
-    // const api = "AIzaSyC3RuJsUQ3759MGeXPIp02-hIREZpkrLqs"
+
     const [tripData, setTripData] = useState({
         origin: "",
         destination: "",
@@ -86,7 +86,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                         <Form.Label>Destino: </Form.Label>
                         <Form.Control type="text" value={tripData.destination} name="destination" onChange={handleInputChange} />
                     </Form.Group>
-
 
                     <Form.Group className="mb-3" controlId="longitudeOrigin">
                         <Form.Label>longitude Origin: </Form.Label>
