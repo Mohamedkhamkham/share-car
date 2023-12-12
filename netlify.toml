@@ -1,0 +1,7 @@
+ from = "/search"
+  to = "https://share-car-server.fly.dev/api/"
+  status = 200
+ 
+ # These are optional
+  force = true
+  headers = {X-From = "Netlify"}
