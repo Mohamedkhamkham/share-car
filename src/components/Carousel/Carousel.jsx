@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../Carousel/Carousel.css";
+// import "../Carousel/Carousel.css";
 
 function Carousel2(props) {
     const [position, setPosition] = useState(0);
