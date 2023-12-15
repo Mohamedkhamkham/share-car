@@ -1,5 +1,5 @@
 export const mapImages = [
-    { src: '../../dist/assets/AhorroCo2.png' },
-    { src: '../../dist/assets/Ahorrocostes.png' },
-    { src: '../../dist/assets/reduccionTrafico.png' },
+    { src: '../../assets/AhorroCo2.png'},
+    { src: '/src/assets/Ahorrocostes.png'},
+    { src: '/src/assets/reduccionTrafico.png'}
 ]
